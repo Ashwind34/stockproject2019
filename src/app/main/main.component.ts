@@ -10,7 +10,7 @@ export class MainComponent implements OnInit {
 
   constructor(public api: ApiService) { }
   data;
-  ticker: string = '';
+  ticker = '';
 
   getResults() {
     this.api.apiCall(this.ticker)
