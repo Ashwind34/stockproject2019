@@ -7,6 +7,8 @@ import { ApiService } from './api.service';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
+import { ClarityModule } from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { MainComponent } from './main/main.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule 
+    HttpClientModule,
+    ClarityModule,
+    BrowserAnimationsModule 
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

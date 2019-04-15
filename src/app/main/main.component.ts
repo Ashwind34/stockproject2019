@@ -16,11 +16,10 @@ export class MainComponent implements OnInit {
     this.api.apiCall(this.ticker)
     .subscribe(
       (response: any) => {
-        console.log(response)
+        console.log(response);
         this.data = response;
-      })
-      
-  }
+      });
+    }
 
   ngOnInit() {
   }
