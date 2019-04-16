@@ -4,23 +4,39 @@
     <label for='tickerbox'>Enter Stock Ticker:</label>
     <input type=text name='tickerbox' [(ngModel)]='ticker'>
     <br>
+    <br>
     <button type='submit' (click)='getResults()'>Submit</button>
 </div>
-<div class="card">
-    <p>Test Test</p>
-    <div class="card-header">
-        Header - P
-    </div>
-    <div class="card-block">
-        <div class="card-title">
-            Block - Party
-        </div>
-        <div class="card-text">
-            ...
-        </div>
-    </div>
-    <div class="card-footer">
-        <button class="btn btn-sm btn-link">Footer Action 1</button>
-        <button class="btn btn-sm btn-link">Footer Action 2</button>
-    </div>
+<br>
+<div style="text-align:center">
+    <button type='submit' (click)='getUser()'>User Test</button>
+</div>
+<br>
+<div style="text-align:center">
+    <form clrForm>
+        <clr-input-container>
+            <label>First Name</label>
+            <input clrInput type="text" [(ngModel)]="userData.firstName" name="example" />
+        </clr-input-container>
+        <clr-input-container>
+            <label>Last Name</label>
+            <input clrInput type="text" [(ngModel)]="userData.lastName" name="example" />
+        </clr-input-container>
+        <clr-input-container>
+            <label>Email</label>
+            <input clrInput type="text" [(ngModel)]="userData.email" name="example" />
+        </clr-input-container>
+        <clr-input-container>
+            <label>Username</label>
+            <input clrInput type="text" [(ngModel)]="userData.username" name="example" />
+        </clr-input-container>
+        <clr-input-container>
+            <label>Password</label>
+            <input clrInput type="text" [(ngModel)]="userData.password" name="example" />
+        </clr-input-container>
+    </form>
+</div>
+<br>
+<div style="text-align:center">
+    <button type='submit' (click)='postUser()'>Post User Test</button>
 </div>
