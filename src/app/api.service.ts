@@ -35,4 +35,10 @@ export class ApiService {
     return this.http.post(this.userUrl, userData)
   }
 
+  userLogin(userData) {
+    return this.http.post(
+      this.userUrl + '/login/', userData
+    )
+  }
+
 }

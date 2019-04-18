@@ -21,6 +21,10 @@ export class MainComponent implements OnInit {
   }
   user;
 
+  token;
+
+  userId;
+
   getResults() {
     this.api.apiCall(this.ticker)
     .subscribe(
@@ -50,6 +54,27 @@ export class MainComponent implements OnInit {
         this.user = response;
       }
     )
+  }
+
+  loginUser() {
+    this.api.userLogin(this.userData)
+    .subscribe(
+      (response: any) => {
+        console.log(response);
+        this.user = response;
+        sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('userId', response.userId);
+      }
+    )
+  }
+
+  printUser() {
+
+    this.token = sessionStorage.getItem('token');
+    this.userId = sessionStorage.getItem('userId');
+    console.log(this.token);
+    console.log(this.userId);
+
   }
  
   ngOnInit() {
