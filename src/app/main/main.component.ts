@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { RegisterComponent } from '../register/register.component';
+import { FavtableComponent } from '../favtable/favtable.component';
 
 @Component({
   selector: 'app-main',
@@ -10,6 +11,7 @@ import { RegisterComponent } from '../register/register.component';
 export class MainComponent implements OnInit {
 
   constructor(public api: ApiService) { }
+  
   data;
 
   ticker;

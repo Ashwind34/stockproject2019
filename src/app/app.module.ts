@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
 import { LandingComponent } from './landing/landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FavtableComponent } from './favtable/favtable.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     MainComponent,
     RegisterComponent,
     LandingComponent,
-    NavbarComponent
+    NavbarComponent,
+    FavtableComponent
   ],
   imports: [
     BrowserModule,
