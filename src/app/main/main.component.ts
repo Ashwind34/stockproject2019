@@ -11,20 +11,8 @@ export class MainComponent implements OnInit {
 
   constructor(public api: ApiService) { }
   data;
-  ticker = '';
-  userData: any =   
-  {
-    firstName: '',
-    lastName: '',
-    email: '',
-    username: '',
-    password : ''
-  }
-  user;
 
-  token;
-
-  userId;
+  ticker;
 
   getResults() {
     this.api.apiCall(this.ticker)

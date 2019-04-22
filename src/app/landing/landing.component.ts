@@ -10,6 +10,8 @@ export class LandingComponent implements OnInit {
 
   constructor() { }
 
+  title = 'Stock Info App PART DEUX';
+
   ngOnInit() {
   }
 
