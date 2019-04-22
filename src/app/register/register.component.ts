@@ -62,8 +62,8 @@ export class RegisterComponent implements OnInit {
 
     this.token = sessionStorage.getItem('token');
     this.userId = sessionStorage.getItem('userId');
-    console.log(this.token);
-    console.log(this.userId);
+    console.log('Token = ' + this.token);
+    console.log('UserID = ' + this.userId);
 
   }
 
