@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FavService } from '../fav.service';
 
 @Component({
   selector: 'app-favtable',
@@ -7,11 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavtableComponent implements OnInit {
 
-  constructor() { }
+  constructor(public favServ: FavService) { }
 
-  favlist = ['AMZN', 'MSFT', 'AAPL', 'MCD' , 'BA', 'AMD', 'NVDA']
+  // favlist = ['AMZN', 'MSFT', 'AAPL', 'MCD' , 'BA', 'AMD', 'NVDA']
+
+  favlist = []
+
+  userId;
+
+  token;
 
   ngOnInit() {
+    this.token = sessionStorage.getItem('token');
+    this.userId = sessionStorage.getItem('userId');
+    this.favServ.getFav(this.userId, this.token)
+    .subscribe(
+      (response:any) => {
+        console.log(response)
+        response.forEach(element => {
+          this.favlist.push(element.ticker)
+        });
+      }
+    )
+
+
   }
 
 }

@@ -13,7 +13,10 @@ export class FavService {
 
   createFav(id, token, fav) {
     return this.http.post(this.favUrl + id + this.favQuery + token, fav);
+  }
 
+  getFav(id, token) {
+    return this.http.get(this.favUrl + id + this.favQuery + token);
   }
 
 
