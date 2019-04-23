@@ -10,7 +10,6 @@ export class FavService {
 
   favUrl: string = 'http://localhost:3000/api/appUsers/'
   favQuery: string = '/userFavs?access_token='
-  favList = []
 
   createFav(id, token, fav) {
     return this.http.post(this.favUrl + id + this.favQuery + token, fav);
@@ -20,18 +19,14 @@ export class FavService {
     return this.http.get(this.favUrl + id + this.favQuery + token);
   }
 
-  updateFav(id, token) {
+  updateFav(id, token, list) {
     this.getFav(id, token)
     .subscribe(
       (response: any) => {
-        console.log(response)
         response.forEach(element => {
-          this.favList.push(element.ticker)
+          list.push(element.ticker)
         });
       }
     )
   }
-
-
-
 }

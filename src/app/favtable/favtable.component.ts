@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FavService } from '../fav.service';
 
 @Component({
@@ -10,23 +10,22 @@ export class FavtableComponent implements OnInit {
 
   constructor(public favServ: FavService) { }
 
-  // favlist = ['AMZN', 'MSFT', 'AAPL', 'MCD' , 'BA', 'AMD', 'NVDA']
+  @Input() favlist: any;
 
-  favlist = this.favServ.favList;
+  // userId;
 
-  userId;
-
-  token;
+  // token;
 
   // ngOnChanges() {
   //   this.favServ.updateFav(this.userId, this.token)
   // }
 
   ngOnInit() {
+    console.log(this.favlist)
     // this.favServ.favList = [];
-    this.token = sessionStorage.getItem('token');
-    this.userId = sessionStorage.getItem('userId');
-    this.favServ.updateFav(this.userId, this.token);
-    this.favServ.favList = [];
+    // this.token = sessionStorage.getItem('token');
+    // this.userId = sessionStorage.getItem('userId');
+    // this.favServ.updateFav(this.userId, this.token);
+    // this.favServ.favList = [];
   }
 }
