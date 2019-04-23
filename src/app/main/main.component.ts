@@ -14,17 +14,23 @@ export class MainComponent implements OnInit {
   
   data;
 
+  stockData;
+
   ticker;
 
   getResults() {
     this.api.apiCall(this.ticker)
     .subscribe(
-      (response: any) => {
-        console.log(response);
-        this.data = response;
-      });
-  }  
- 
+    (response: any) => {
+      console.log(response);
+      this.data = response;
+    });
+  }
+
+  objTest() {
+    console.log(this.data['Time Series (Daily)']);
+  }
+
   ngOnInit() {
   }
 
