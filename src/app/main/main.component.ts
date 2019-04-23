@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { FavService } from '../fav.service';
 import { RegisterComponent } from '../register/register.component';
 import { FavtableComponent } from '../favtable/favtable.component';
+
 
 @Component({
   selector: 'app-main',
@@ -10,13 +12,19 @@ import { FavtableComponent } from '../favtable/favtable.component';
 })
 export class MainComponent implements OnInit {
 
-  constructor(public api: ApiService) { }
+  constructor(public api: ApiService, public favServ: FavService) { }
   
   data;
 
   stockData;
 
   ticker;
+
+  token;
+
+  userId;
+
+  favData = {};
 
   getResults() {
     this.api.apiCall(this.ticker)
@@ -29,6 +37,23 @@ export class MainComponent implements OnInit {
 
   objTest() {
     console.log(this.data['Time Series (Daily)']);
+  }
+
+  createFav() {
+    this.token = sessionStorage.getItem('token');
+    this.userId = sessionStorage.getItem('userId');
+    this.favData = {
+      name: 'Microsoft',
+      ticker: this.ticker.toUpperCase(),
+      userId: this.userId
+    }
+    
+    this.favServ.createFav(this.userId, this.token, this.favData)
+    .subscribe(
+      (response: any) => {
+        console.log(response)
+      }
+    )
   }
 
   ngOnInit() {

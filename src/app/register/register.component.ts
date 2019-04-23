@@ -10,13 +10,13 @@ export class RegisterComponent implements OnInit {
 
   constructor(public userApi: UserService) { }
 
-  userData: any =   
+  userData: any =
   {
     firstName: '',
     lastName: '',
     email: '',
     password : ''
-  }
+  };
 
   user;
 
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
 
   userId;
 
-  //tests for api/DB, can delete later
+  // tests for api/DB, can delete later
 
   getUser() {
     this.userApi.userCall()
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
         this.user = response;
         console.log(this.user);
       }
-    )
+    );
   }
 
   postUser() {
@@ -41,9 +41,9 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       (response: any) => {
         this.user = response;
-        console.log(this.user)
+        console.log(this.user);
       }
-    )
+    );
   }
 
   loginUser() {
@@ -51,17 +51,16 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       (response: any) => {
         this.user = response;
-        console.log(this.user)
+        console.log(this.user);
         sessionStorage.setItem('token', response.token);
         sessionStorage.setItem('userId', response.userId);
+        this.token = sessionStorage.getItem('token');
+        this.userId = sessionStorage.getItem('userId');
       }
-    )
+    );
   }
 
   printUser() {
-
-    this.token = sessionStorage.getItem('token');
-    this.userId = sessionStorage.getItem('userId');
     console.log('Token = ' + this.token);
     console.log('UserID = ' + this.userId);
 

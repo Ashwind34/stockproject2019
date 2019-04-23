@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class FavService {
+
+  constructor(public http: HttpClient) { }
+
+  favUrl: string = 'http://localhost:3000/api/appUsers/'
+  favQuery: string = '/userFavs?access_token='
+
+  createFav(id, token, fav) {
+    return this.http.post(this.favUrl + id + this.favQuery + token, fav);
+
+  }
+
+
+
+}
