@@ -11,6 +11,11 @@ export class ApiService {
   
   baseUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=FULL&'
 
+  // api call for time series data
+  // NEED TO ADD CALL FOR SINGLE REAL TIME QUOTE
+  // NEED TO FIND OUT HOW TO ACCESS COMPANY NAME
+  // CONSIDER ADDING SEARCH FUNCTIONALITY
+
   apiCall(ticker) {
       return this.http.get(
         this.baseUrl +

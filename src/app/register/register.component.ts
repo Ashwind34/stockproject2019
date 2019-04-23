@@ -20,24 +20,8 @@ export class RegisterComponent implements OnInit {
 
   user;
 
-  token;
-
-  userId;
-
-  // tests for api/DB, can delete later
-
-  getUser() {
-    this.userApi.userCall()
-    .subscribe(
-      (response: any) => {
-        this.user = response;
-        console.log(this.user);
-      }
-    );
-  }
-
-  postUser() {
-    this.userApi.userPost(this.userData)
+  registerUser() {
+    this.userApi.userRegister(this.userData)
     .subscribe(
       (response: any) => {
         this.user = response;
@@ -54,16 +38,8 @@ export class RegisterComponent implements OnInit {
         console.log(this.user);
         sessionStorage.setItem('token', response.token);
         sessionStorage.setItem('userId', response.userId);
-        this.token = sessionStorage.getItem('token');
-        this.userId = sessionStorage.getItem('userId');
       }
     );
-  }
-
-  printUser() {
-    console.log('Token = ' + this.token);
-    console.log('UserID = ' + this.userId);
-
   }
 
   ngOnInit() {

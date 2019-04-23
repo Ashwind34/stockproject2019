@@ -47,7 +47,7 @@ export class MainComponent implements OnInit {
       ticker: this.ticker.toUpperCase(),
       userId: this.userId
     }
-
+    this.favList = []
     this.favServ.createFav(this.userId, this.token, this.newFavItem)
     .subscribe(
       (response: any) => {
@@ -58,11 +58,10 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.favList = []
     this.token = sessionStorage.getItem('token');
     this.userId = sessionStorage.getItem('userId');
     this.favServ.updateFav(this.userId, this.token, this.favList);
-    // console.log(this.favList)
-    // this.favList = [];
   }
 }
 

@@ -10,17 +10,9 @@ export class UserService {
 
   userUrl: string = 'http://localhost:3000/api/appUsers'
 
-  userId: string = '5cb5458bc68a8600630cf698'
+  // api calls to interact with backend
 
-  //tests for api/DB, can delete later
-
-  userCall() {
-    return this.http.get(
-      this.userUrl + this.userId
-    )
-  }
-
-  userPost(userData) {
+  userRegister(userData) {
     return this.http.post(this.userUrl, userData)
   }
 
