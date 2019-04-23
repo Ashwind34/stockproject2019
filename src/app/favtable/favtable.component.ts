@@ -12,26 +12,21 @@ export class FavtableComponent implements OnInit {
 
   // favlist = ['AMZN', 'MSFT', 'AAPL', 'MCD' , 'BA', 'AMD', 'NVDA']
 
-  favlist = []
+  favlist = this.favServ.favList;
 
   userId;
 
   token;
 
+  // ngOnChanges() {
+  //   this.favServ.updateFav(this.userId, this.token)
+  // }
+
   ngOnInit() {
+    // this.favServ.favList = [];
     this.token = sessionStorage.getItem('token');
     this.userId = sessionStorage.getItem('userId');
-    this.favServ.getFav(this.userId, this.token)
-    .subscribe(
-      (response:any) => {
-        console.log(response)
-        response.forEach(element => {
-          this.favlist.push(element.ticker)
-        });
-      }
-    )
-
-
+    this.favServ.updateFav(this.userId, this.token);
+    this.favServ.favList = [];
   }
-
 }

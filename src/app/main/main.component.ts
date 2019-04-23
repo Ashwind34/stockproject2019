@@ -39,7 +39,7 @@ export class MainComponent implements OnInit {
     console.log(this.data['Time Series (Daily)']);
   }
 
-  createFav() {
+  newFav() {
     this.token = sessionStorage.getItem('token');
     this.userId = sessionStorage.getItem('userId');
     this.favData = {
@@ -47,7 +47,7 @@ export class MainComponent implements OnInit {
       ticker: this.ticker.toUpperCase(),
       userId: this.userId
     }
-    
+
     this.favServ.createFav(this.userId, this.token, this.favData)
     .subscribe(
       (response: any) => {
