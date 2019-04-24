@@ -1,13 +1,11 @@
-<table class='table'>
-  <tbody>
+<table class='table table-vertical'>
+  <tbody *ngFor='let item of fullData'>
     <tr>
-      <th *ngFor='let head of headers'>
-        {{head}}
+      <th>
+        {{item.header}}
       </th>
-    </tr>
-    <tr>  
-      <td *ngFor='let item of quoteData'>
-        {{item}}
+      <td>
+        {{item.data}}
       </td>
     </tr>
   </tbody>
