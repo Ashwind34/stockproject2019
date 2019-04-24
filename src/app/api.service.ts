@@ -11,8 +11,9 @@ export class ApiService {
   
   baseUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=FULL&'
 
+  quoteUrl: string = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&'
+
   // api call for time series data
-  // NEED TO ADD CALL FOR SINGLE REAL TIME QUOTE
   // NEED TO FIND OUT HOW TO ACCESS COMPANY NAME
   // CONSIDER ADDING SEARCH FUNCTIONALITY
 
@@ -23,4 +24,13 @@ export class ApiService {
         '&apikey=' + this.key
       )
   }
+
+  quoteCall(ticker) {
+    return this.http.get(
+      this.quoteUrl +
+      'symbol=' + ticker +
+      '&apikey=' + this.key
+    )
+  }
+
 }

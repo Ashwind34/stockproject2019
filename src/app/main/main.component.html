@@ -5,20 +5,17 @@
     <input type=text name='tickerbox' [(ngModel)]='ticker'>
     <br>
     <br>
-    <button type='submit' (click)='getResults()'>Submit</button>
+    <button type='submit' (click)='getResults()'>Data</button>
+    <br>
+    <button type='submit' (click)='getQuote()'>Quote</button>
     <br>
     <button type='submit' (click)='objTest()'>Test</button>
     <br>
     <button type='submit' (click)='newFav()'>Add to Favorites</button>
 </div>
 <br>
-<div *ngIf='data'>
-    <table class='table table-vertical'>
-        <tr>
-            <th>Label</th>
-            <td>Data</td>
-        </tr>
-    </table>
+<div *ngIf='quote'>
+    <app-quotetable [quoteData]='quoteData'></app-quotetable>
 </div>
 
 <!-- {Meta Data: {…}, Time Series (Daily): {…}}

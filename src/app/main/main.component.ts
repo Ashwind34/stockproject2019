@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { FavService } from '../fav.service';
 import { RegisterComponent } from '../register/register.component';
 import { FavtableComponent } from '../favtable/favtable.component';
+import { QuotetableComponent } from '../quotetable/quotetable.component';
 
 
 @Component({
@@ -16,7 +17,11 @@ export class MainComponent implements OnInit {
   
   data;
 
+  quote;
+
   stockData;
+
+  quoteData;
 
   ticker;
 
@@ -31,10 +36,23 @@ export class MainComponent implements OnInit {
   getResults() {
     this.api.apiCall(this.ticker)
     .subscribe(
-    (response: any) => {
-      console.log(response);
-      this.data = response;
+      (response: any) => {
+        console.log(response);
+        this.data = response;
     });
+  }
+
+  getQuote() {
+    this.api.quoteCall(this.ticker)
+    .subscribe(
+      (response: any) => {
+        this.quote = response;
+        console.log(this.quote)
+        console.log(this.quote['Global Quote'])
+        console.log(Object.values(this.quote['Global Quote']))
+        this.quoteData = Object.values(this.quote['Global Quote'])
+      }
+    )
   }
 
   objTest() {

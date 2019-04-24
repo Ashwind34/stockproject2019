@@ -17,6 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { LandingComponent } from './landing/landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FavtableComponent } from './favtable/favtable.component';
+import { QuotetableComponent } from './quotetable/quotetable.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FavtableComponent } from './favtable/favtable.component';
     RegisterComponent,
     LandingComponent,
     NavbarComponent,
-    FavtableComponent
+    FavtableComponent,
+    QuotetableComponent
   ],
   imports: [
     BrowserModule,
