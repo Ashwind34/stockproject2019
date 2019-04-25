@@ -53,7 +53,7 @@
               <input type="checkbox" name="rememberMe" clrCheckbox [(ngModel)]="form.rememberMe"/>
           </clr-checkbox-wrapper> -->
           <div *ngIf="errorMessage" class="error active">
-              Invalid user name or password
+              Error with Registration.  Please Try Again
           </div>
           <button type="submit" class="btn btn-primary" (click)='registerUser()'>Register</button>
           <button type="submit" class="btn btn-primary" (click)='loginUser()'>Login</button>

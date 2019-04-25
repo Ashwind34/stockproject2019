@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +9,7 @@ import { UserService } from '../user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(public userApi: UserService) { }
+  constructor(private router: Router, public userApi: UserService) { }
 
   userData: any =
   {
@@ -23,13 +24,22 @@ export class RegisterComponent implements OnInit {
   errorMessage;
 
   registerUser() {
+    this.user = '';
+    this.errorMessage = '';
     this.userApi.userRegister(this.userData)
     .subscribe(
       (response: any) => {
         this.user = response;
+        sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('userId', response.userId);
       }, error => {
         this.errorMessage = error.status;
-        console.log(this.errorMessage)
+        console.log('Error Status Code: ' + this.errorMessage);
+        console.log(error);
+      }, () => {
+          if(!this.errorMessage) {
+            this.router.navigate(['/main']);
+          }
       }
     );
   }
