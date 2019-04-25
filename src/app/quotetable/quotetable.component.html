@@ -1,4 +1,4 @@
-<table class='table table-vertical'>
+<!-- <table class='table table-vertical'>
   <tbody *ngFor='let item of fullData'>
     <tr>
       <th>
@@ -9,4 +9,26 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
+
+<div class='clr-row'>
+  <div class='clr-col-12'>
+    <table class='table'>
+      <tr>
+        <th>Security Data</th>
+      </tr>
+    </table>
+    <table class='table' style='margin-top: 0px'>
+      <tbody>
+        <tr *ngFor='let item of fullData'>
+          <td>
+            {{item.header}}
+          </td>
+          <td>
+            {{item.data}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
