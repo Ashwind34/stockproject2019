@@ -4,10 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { routes } from './app.router';
 
-
 import { ApiService } from './api.service';
 import { UserService } from './user.service';
-
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -18,8 +16,6 @@ import { LandingComponent } from './landing/landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FavtableComponent } from './favtable/favtable.component';
 import { QuotetableComponent } from './quotetable/quotetable.component';
-import { LoginComponent } from './login/login.component';
-
 
 @NgModule({
   declarations: [
@@ -30,7 +26,6 @@ import { LoginComponent } from './login/login.component';
     NavbarComponent,
     FavtableComponent,
     QuotetableComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,

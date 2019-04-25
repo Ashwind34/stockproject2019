@@ -1,39 +1,10 @@
-<!-- <div style="text-align:center">
-  <form clrForm>
-      <clr-input-container>
-          <label>First Name</label>
-          <input clrInput type="text" [(ngModel)]="userData.firstName" name="example" />
-      </clr-input-container>
-      <clr-input-container>
-          <label>Last Name</label>
-          <input clrInput type="text" [(ngModel)]="userData.lastName" name="example" />
-      </clr-input-container>
-      <clr-input-container>
-          <label>Email</label>
-          <input clrInput type="text" [(ngModel)]="userData.email" name="example" />
-      </clr-input-container>
-      <clr-input-container>
-          <label>Password</label>
-          <input clrInput type="text" [(ngModel)]="userData.password" name="example" />
-      </clr-input-container>
-  </form>
-</div>
-<br>
-<div style="text-align:center">
-  <button type='submit' (click)='registerUser()'>Register Test</button>
-</div>
-<br>
-<div style="text-align:center">
-  <button type='submit' (click)='loginUser()'>Login Test</button>
-</div>
-<br> -->
-
 <div class="login-wrapper">
   <form class="login">
       <section class="title">
           <h3 class="welcome">Welcome to</h3>
-          Company Product Name
-          <h5 class="hint">Use your Company ID to sign in or create one now</h5>
+          Andy's Stock Data Tool
+          <h5 class="hint">Please complete the following form to register!</h5>
+          <h5 class="hint"><i>(All fields required)</i></h5>
       </section>
       <div class="login-group">
           <clr-input-container>
@@ -48,16 +19,11 @@
           <clr-password-container>
               <input type="password" name="password" clrPassword placeholder="Password" [(ngModel)]="userData.password"/>
           </clr-password-container>
-          <!-- <clr-checkbox-wrapper>
-              <label>Remember me</label>
-              <input type="checkbox" name="rememberMe" clrCheckbox [(ngModel)]="form.rememberMe"/>
-          </clr-checkbox-wrapper> -->
           <div *ngIf="errorMessage" class="error active">
               Error with Registration.  Please Try Again
           </div>
           <button type="submit" class="btn btn-primary" (click)='registerUser()'>Register</button>
-          <button type="submit" class="btn btn-primary" (click)='loginUser()'>Login</button>
-      
-        </div>
+          <!-- <button type="submit" class="btn btn-primary" (click)='loginUser()'>Login</button>       -->
+      </div>
   </form>
 </div>
