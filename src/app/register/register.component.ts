@@ -20,12 +20,16 @@ export class RegisterComponent implements OnInit {
 
   user;
 
+  errorMessage;
+
   registerUser() {
     this.userApi.userRegister(this.userData)
     .subscribe(
       (response: any) => {
         this.user = response;
-        console.log(this.user);
+      }, error => {
+        this.errorMessage = error.status;
+        console.log(this.errorMessage)
       }
     );
   }

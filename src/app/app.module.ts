@@ -18,6 +18,7 @@ import { LandingComponent } from './landing/landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FavtableComponent } from './favtable/favtable.component';
 import { QuotetableComponent } from './quotetable/quotetable.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { QuotetableComponent } from './quotetable/quotetable.component';
     LandingComponent,
     NavbarComponent,
     FavtableComponent,
-    QuotetableComponent
+    QuotetableComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

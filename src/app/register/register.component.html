@@ -1,4 +1,4 @@
-<div style="text-align:center">
+<!-- <div style="text-align:center">
   <form clrForm>
       <clr-input-container>
           <label>First Name</label>
@@ -26,5 +26,38 @@
 <div style="text-align:center">
   <button type='submit' (click)='loginUser()'>Login Test</button>
 </div>
-<br>
+<br> -->
 
+<div class="login-wrapper">
+  <form class="login">
+      <section class="title">
+          <h3 class="welcome">Welcome to</h3>
+          Company Product Name
+          <h5 class="hint">Use your Company ID to sign in or create one now</h5>
+      </section>
+      <div class="login-group">
+          <clr-input-container>
+              <input type="text" name="firstName" clrInput placeholder="First Name" [(ngModel)]="userData.firstName"/>
+          </clr-input-container>
+          <clr-input-container>
+              <input type="text" name="username" clrInput placeholder="Last Name" [(ngModel)]="userData.lastName"/>
+          </clr-input-container>
+          <clr-input-container>
+              <input type="text" name="username" clrInput placeholder="Email" [(ngModel)]="userData.email"/>
+          </clr-input-container>
+          <clr-password-container>
+              <input type="password" name="password" clrPassword placeholder="Password" [(ngModel)]="userData.password"/>
+          </clr-password-container>
+          <!-- <clr-checkbox-wrapper>
+              <label>Remember me</label>
+              <input type="checkbox" name="rememberMe" clrCheckbox [(ngModel)]="form.rememberMe"/>
+          </clr-checkbox-wrapper> -->
+          <div *ngIf="errorMessage" class="error active">
+              Invalid user name or password
+          </div>
+          <button type="submit" class="btn btn-primary" (click)='registerUser()'>Register</button>
+          <button type="submit" class="btn btn-primary" (click)='loginUser()'>Login</button>
+      
+        </div>
+  </form>
+</div>
