@@ -17,7 +17,8 @@
             </div>
             <button type="submit" class="btn btn-primary" (click)='loginUser()'>Login</button>
             <button type="submit" class="btn btn-primary" (click)='toRegister()'>New User? Click Here to Register for Free!</button>  
-            <a routerLink='../main'>Continue as Guest</a>      
+            <!-- NEED TO ADD NGIF TO REMOVE IF A USER IS LOGGED IN -->
+            <a *ngIf="token == undefined" routerLink='../main'>Continue as Guest</a>      
         </div>
     </form>
 </div>

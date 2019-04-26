@@ -22,7 +22,7 @@ export class LandingComponent implements OnInit {
 
   user;
 
-  loggedIn = false;
+  token;
 
   errorMessage;
 
@@ -36,7 +36,6 @@ export class LandingComponent implements OnInit {
         console.log(this.user);
         sessionStorage.setItem('token', response.token);
         sessionStorage.setItem('userId', response.userId);
-        this.loggedIn = true;
       }, error => {
         this.errorMessage = error.status;
         console.log('Error Status Code: ' + this.errorMessage);
@@ -55,6 +54,9 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(sessionStorage.getItem('token'))
+    this.token = sessionStorage.getItem('token')
+    console.log('Token Property ' + this.token)
   }
 
 }
