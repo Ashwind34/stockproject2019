@@ -37,21 +37,9 @@ export class RegisterComponent implements OnInit {
         console.log('Error Status Code: ' + this.errorMessage);
         console.log(error);
       }, () => {
-          if(!this.errorMessage) {
+          if (!this.errorMessage) {
             this.router.navigate(['/main']);
           }
-      }
-    );
-  }
-
-  loginUser() {
-    this.userApi.userLogin(this.userData)
-    .subscribe(
-      (response: any) => {
-        this.user = response;
-        console.log(this.user);
-        sessionStorage.setItem('token', response.token);
-        sessionStorage.setItem('userId', response.userId);
       }
     );
   }

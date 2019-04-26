@@ -1,7 +1,24 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Stock Logo" src="../assets/stockphoto.jpg">
+<div class="login-wrapper">
+    <form class="login">
+        <section class="title">
+            <h3 class="welcome">Welcome to</h3>
+            Andy's Stock Data Tool
+            <h5 class="hint">Please Log In!</h5>
+        </section>
+        <div class="login-group">
+            <clr-input-container>
+                <input type="text" name="email" clrInput placeholder="Email" [(ngModel)]="loginData.email"/>
+            </clr-input-container>
+            <clr-password-container>
+                <input type="password" name="password" clrPassword placeholder="Password" [(ngModel)]="loginData.password"/>
+            </clr-password-container>
+            <div *ngIf="errorMessage" class="error active">
+                Invalid user name or password
+            </div>
+            <button type="submit" class="btn btn-primary" (click)='loginUser()'>Login</button>
+            <button type="submit" class="btn btn-primary" (click)='toRegister()'>New User? Click Here to Register for Free!</button>  
+            <a routerLink='../main'>Continue as Guest</a>      
+        </div>
+    </form>
 </div>
 

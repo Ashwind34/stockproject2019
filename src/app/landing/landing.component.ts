@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -8,9 +10,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, public userApi: UserService) { }
 
   title = 'Stock Info App PART DEUX';
+
+  loginData: any =
+  {
+    email: '',
+    password : ''
+  };
+
+  user;
+
+  loggedIn = false;
+
+  errorMessage;
+
+  loginUser() {
+    this.user = '';
+    this.errorMessage = '';
+    this.userApi.userLogin(this.loginData)
+    .subscribe(
+      (response: any) => {
+        this.user = response;
+        console.log(this.user);
+        sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('userId', response.userId);
+        this.loggedIn = true;
+      }, error => {
+        this.errorMessage = error.status;
+        console.log('Error Status Code: ' + this.errorMessage);
+        console.log(error);
+      }, () => {
+          if (!this.errorMessage) {
+            this.router.navigate(['/main']);
+          }
+      }
+    );
+  }
+
+  toRegister() {
+    this.router.navigate(['/register']);
+
+  }
 
   ngOnInit() {
   }
