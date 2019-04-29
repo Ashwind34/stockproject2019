@@ -21,9 +21,12 @@
           </clr-password-container>
           <div *ngIf="errorMessage" class="error active">
               Error with Registration.  Please Try Again
-          </div>
+          </div>         
           <button type="submit" class="btn btn-primary" (click)='registerUser()'>Register</button>
-          <a routerLink='../main'>Continue as Guest</a>   
+          <div class="guest">
+            <br>
+            <a routerLink='../main'>Continue as Guest</a>
+          </div>
       </div>
   </form>
 </div>

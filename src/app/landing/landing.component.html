@@ -16,9 +16,11 @@
                 Invalid user name or password
             </div>
             <button type="submit" class="btn btn-primary" (click)='loginUser()'>Login</button>
-            <button type="submit" class="btn btn-primary" (click)='toRegister()'>New User? Click Here to Register for Free!</button>  
-            <!-- NEED TO ADD NGIF TO REMOVE IF A USER IS LOGGED IN -->
-            <a *ngIf="token == undefined" routerLink='../main'>Continue as Guest</a>      
+            <button type="submit" class="btn btn-primary" (click)='toRegister()'>New User? Click Here to Register for Free!</button>
+            <div class='guest'>
+                <br> 
+                <a *ngIf="token == undefined" routerLink='../main'>Continue as Guest</a>  
+            </div>    
         </div>
     </form>
 </div>
