@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
 
   newFavItem = {};
 
-  favList = [];
+  favList;
 
   getResults() {
     this.api.apiCall(this.ticker)
@@ -56,7 +56,14 @@ export class MainComponent implements OnInit {
   }
 
   objTest() {
-    console.log(this.data['Time Series (Daily)']);
+    // console.log(this.data['Time Series (Daily)']);
+    console.log(this.favServ.getFavData(this.userId, this.token));
+    this.favServ.getFavData(this.userId, this.token)
+    .subscribe(
+      response => {
+        console.log(response);
+      }
+    );
   }
 
   newFav() {
@@ -66,20 +73,21 @@ export class MainComponent implements OnInit {
       userId: this.userId
     }
     this.favList = []
-    this.favServ.createFav(this.userId, this.token, this.newFavItem)
-    .subscribe(
-      (response: any) => {
-        console.log(response)
-        this.favServ.updateFav(this.userId, this.token, this.favList)
-      }
-    )
+    this.favServ.addFav(this.userId, this.token, this.newFavItem)
+      .subscribe(
+        (response: any) => {
+          console.log(response)
+          this.favServ.createFavList(this.userId, this.token)
+        }
+      )
   }
 
   ngOnInit() {
-    this.favList = []
+    // this.favList = []
     this.token = sessionStorage.getItem('token');
     this.userId = sessionStorage.getItem('userId');
-    this.favServ.updateFav(this.userId, this.token, this.favList);
+    this.favList = this.favServ.createFavList(this.userId, this.token);
+    console.log(this.favList);
   }
 }
 
