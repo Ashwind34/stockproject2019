@@ -20,14 +20,18 @@ export class FavService {
 
   constructor(public http: HttpClient) { }
 
+
+  // get raw data on user favorites.  returns array of objects
   getFavData(id, token) {
     return this.http.get(this.favUrl + id + this.favQuery + token);
   }
 
+  // helper method to return an array without any duplicate entries
   uniqueFav(array) {
     return array.filter((element, index) => array.indexOf(element) === index);
   }
 
+  // method to establish current user favorites list
   createFavList(id, token) {
     this.getFavData(id, token)
     .subscribe(
@@ -40,6 +44,7 @@ export class FavService {
       });
   }
 
+  // helper method to check if a ticker is already in the user favorites list
   checkUniqueFav(array, ticker) {
     if (array.includes(ticker)) {
       return false;
@@ -48,6 +53,7 @@ export class FavService {
     }
   }
 
+  // method to add a new favorite to the list and return the updated list 
   addFav(id, token, fav) {
     const unique = this.checkUniqueFav(this.favList, fav.ticker);
     if (unique) {
