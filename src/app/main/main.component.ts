@@ -66,7 +66,7 @@ export class MainComponent implements OnInit {
 
   newFav() {
     this.newFavItem = {
-      name: '',
+      name: 'Placeholder',
       ticker: this.ticker.toUpperCase(),
       userId: this.userId
     }
