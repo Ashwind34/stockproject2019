@@ -11,22 +11,17 @@ export class FavService {
   favUrl: string = 'http://localhost:3000/api/appUsers/'
   favQuery: string = '/userFavs?access_token='
 
-  addUniqueFav(array, ticker) {
+  checkUniqueFav(array, ticker) {
     if (array.includes(ticker)) {
-      return array;
+      return false;
     } else {
-      array.push(ticker);
-      return array;
+      return true;
     }
   }
 
-  checkUniqueFav(array) {
+  uniqueFav(array) {
     let uniqueArray = Array.from(new Set(array))
     return uniqueArray;
-  }
-
-  addFav(id, token, fav) {
-    return this.http.post(this.favUrl + id + this.favQuery + token, fav);
   }
 
   getFavData(id, token) {
@@ -37,13 +32,20 @@ export class FavService {
     this.getFavData(id, token)
     .subscribe(
       (response: any) => {
+        let array = []
         response.forEach(element => {
-          let array = [];
           array.push(element.ticker)
-          return this.checkUniqueFav(array)
         });
+        console.log(array)
+        return this.uniqueFav(array)
       }
     )
   }
-}
 
+  addFav(id, token, fav, list) {
+    let unique = this.checkUniqueFav(list, fav.ticker)
+    if (unique) {
+      return this.http.post(this.favUrl + id + this.favQuery + token, fav);
+    }
+  }
+}

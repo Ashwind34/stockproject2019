@@ -56,7 +56,7 @@ export class MainComponent implements OnInit {
   }
 
   objTest() {
-    // console.log(this.data['Time Series (Daily)']);
+    console.log(this.favServ.createFavList(this.userId, this.token));
     console.log(this.favServ.getFavData(this.userId, this.token));
     this.favServ.getFavData(this.userId, this.token)
     .subscribe(
@@ -64,6 +64,7 @@ export class MainComponent implements OnInit {
         console.log(response);
       }
     );
+    
   }
 
   newFav() {
@@ -73,7 +74,7 @@ export class MainComponent implements OnInit {
       userId: this.userId
     }
     this.favList = []
-    this.favServ.addFav(this.userId, this.token, this.newFavItem)
+    this.favServ.addFav(this.userId, this.token, this.newFavItem, this.favList)
       .subscribe(
         (response: any) => {
           console.log(response)
