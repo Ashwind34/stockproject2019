@@ -6,11 +6,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FavService {
 
+  favUrl: string = 'http://localhost:3000/api/appUsers/'
+
+  favQuery: string = '/userFavs?access_token='
+
+  // array of objects from getFav().subscribe
+  rawFavData;
+
+  // list of unique tickers only, UPDATE LATER TO INCLUDE COMPANY NAME
+  favList = [];
+
   constructor(public http: HttpClient) { }
 
-  favUrl: string = 'http://localhost:3000/api/appUsers/'
-  favQuery: string = '/userFavs?access_token='
-  
   checkUniqueFav(array, ticker) {
     if (array.includes(ticker)) {
       return false;
@@ -32,21 +39,20 @@ export class FavService {
     this.getFavData(id, token)
     .subscribe(
       (response: any) => {
-        let array = []
-        response.forEach(element => {
-          array.push(element.ticker)
+        console.log(response);
+        this.rawFavData = response;
+        this.rawFavData.forEach(element => {
+          this.favList.push(element.ticker);
         });
-        console.log(array)
-        console.log(this.uniqueFav(array))
-        return this.uniqueFav(array)
-      }
-    )
+        this.favList = this.uniqueFav(this.favList);
+        console.log(this.favList);
+      });
   }
 
-  addFav(id, token, fav, list) {
-    let unique = this.checkUniqueFav(list, fav.ticker)
-    if (unique) {
-      return this.http.post(this.favUrl + id + this.favQuery + token, fav);
-    }
-  }
+  // addFav(id, token, fav, list) {
+  //   let unique = this.checkUniqueFav(list, fav.ticker)
+  //   if (unique) {
+  //     return this.http.post(this.favUrl + id + this.favQuery + token, fav);
+  //   }
+  // }
 }
