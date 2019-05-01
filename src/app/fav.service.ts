@@ -10,7 +10,7 @@ export class FavService {
 
   favUrl: string = 'http://localhost:3000/api/appUsers/'
   favQuery: string = '/userFavs?access_token='
-
+  
   checkUniqueFav(array, ticker) {
     if (array.includes(ticker)) {
       return false;
@@ -37,6 +37,7 @@ export class FavService {
           array.push(element.ticker)
         });
         console.log(array)
+        console.log(this.uniqueFav(array))
         return this.uniqueFav(array)
       }
     )
