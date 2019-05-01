@@ -14,24 +14,18 @@ export class FavService {
   rawFavData;
 
   // list of unique tickers only, UPDATE LATER TO INCLUDE COMPANY NAME
-  favList =[];
+  favList = [];
+
+  favError;
 
   constructor(public http: HttpClient) { }
 
-  checkUniqueFav(array, ticker) {
-    if (array.includes(ticker)) {
-      return false;
-    } else {
-      return true;
-    }
+  getFavData(id, token) {
+    return this.http.get(this.favUrl + id + this.favQuery + token);
   }
 
   uniqueFav(array) {
     return array.filter((element, index) => array.indexOf(element) === index);
-  }
-
-  getFavData(id, token) {
-    return this.http.get(this.favUrl + id + this.favQuery + token);
   }
 
   createFavList(id, token) {
@@ -46,10 +40,26 @@ export class FavService {
       });
   }
 
-  // addFav(id, token, fav, list) {
-  //   let unique = this.checkUniqueFav(list, fav.ticker)
-  //   if (unique) {
-  //     return this.http.post(this.favUrl + id + this.favQuery + token, fav);
-  //   }
-  // }
+  checkUniqueFav(array, ticker) {
+    if (array.includes(ticker)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  addFav(id, token, fav) {
+    const unique = this.checkUniqueFav(this.favList, fav.ticker);
+    if (unique) {
+      this.favError = '';
+      return this.http.post(this.favUrl + id + this.favQuery + token, fav)
+        .subscribe(
+          (response: any) => {
+            this.createFavList(id, token)
+          }
+        );
+    } else {
+      this.favError = 'That stock is already in your favorites!';
+    }
+  }
 }
