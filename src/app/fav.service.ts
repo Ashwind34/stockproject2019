@@ -20,7 +20,6 @@ export class FavService {
 
   constructor(public http: HttpClient) { }
 
-
   // get raw data on user favorites.  returns array of objects
   getFavData(id, token) {
     return this.http.get(this.favUrl + id + this.favQuery + token);

@@ -1,9 +1,20 @@
+<!-- <table class='table'>
+  <tr>
+    <th>Favorites</th>
+  </tr>
+  <tr *ngFor='let item of favServ.favList; let i = index; trackBy: trackTest'>
+    <td [(ngModel)]="favServ.favList[i]">{{item}}</td>
+  </tr>
+</table> -->
+
 <table class='table'>
   <tr>
     <th>Favorites</th>
   </tr>
-  <tr *ngFor='let item of favServ.favList'>
+  <tr *ngFor='let item of favServ.favList' (click)='changeTicker()'>
     <td>{{item}}</td>
   </tr>
+  <tr *ngIf='ticker'>{{ticker}}</tr>
 </table>
+
 

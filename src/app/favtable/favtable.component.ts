@@ -8,9 +8,19 @@ import { FavService } from '../fav.service';
 })
 export class FavtableComponent implements OnInit {
 
+  ticker;
+
   constructor(public favServ: FavService) { }
 
   @Input() favlist: any;
+
+  trackTest(index: any, item: any) {
+    return index;
+  }
+
+  changeTicker() {
+    this.ticker = 'Working!';
+  }
 
   ngOnInit() {
   }
