@@ -14,7 +14,7 @@ export class FavService {
   rawFavData;
 
   // list of unique tickers only, UPDATE LATER TO INCLUDE COMPANY NAME
-  favList = [];
+  favList =[];
 
   constructor(public http: HttpClient) { }
 
@@ -27,8 +27,7 @@ export class FavService {
   }
 
   uniqueFav(array) {
-    let uniqueArray = Array.from(new Set(array))
-    return uniqueArray;
+    return array.filter((element, index) => array.indexOf(element) === index);
   }
 
   getFavData(id, token) {
@@ -39,13 +38,11 @@ export class FavService {
     this.getFavData(id, token)
     .subscribe(
       (response: any) => {
-        console.log(response);
         this.rawFavData = response;
         this.rawFavData.forEach(element => {
           this.favList.push(element.ticker);
         });
-        this.favList = this.uniqueFav(this.favList);
-        console.log(this.favList);
+        this.favList = this.uniqueFav(this.favList)
       });
   }
 
