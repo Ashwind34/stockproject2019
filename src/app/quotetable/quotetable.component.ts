@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { headersToString } from 'selenium-webdriver/http';
 
 @Component({
@@ -17,6 +17,7 @@ export class QuotetableComponent implements OnInit {
   fullData = [];
 
   createTableData() {
+    this.fullData = [];
     for (let i = 0; i < this.headers.length; i++ ) {
       let item = {
         header: this.headers[i],
@@ -26,8 +27,11 @@ export class QuotetableComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.createTableData()
+  }
+
+  ngOnInit() {
   }
 
 }

@@ -23,8 +23,6 @@ export class MainComponent implements OnInit {
 
   quoteData;
 
-  ticker;
-
   token;
 
   userId;
@@ -32,7 +30,7 @@ export class MainComponent implements OnInit {
   newFavItem = {};
 
   getResults() {
-    this.api.apiCall(this.ticker)
+    this.api.apiCall(this.favServ.ticker)
     .subscribe(
       (response: any) => {
         console.log(response);
@@ -41,7 +39,7 @@ export class MainComponent implements OnInit {
   }
 
   getQuote() {
-    this.api.quoteCall(this.ticker)
+    this.api.quoteCall(this.favServ.ticker)
     .subscribe(
       (response: any) => {
         this.quote = response;
@@ -67,7 +65,7 @@ export class MainComponent implements OnInit {
   newFav() {
     this.newFavItem = {
       name: 'Placeholder',
-      ticker: this.ticker.toUpperCase(),
+      ticker: this.favServ.ticker.toUpperCase(),
       userId: this.userId
     }
 

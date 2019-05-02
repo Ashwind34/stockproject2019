@@ -8,8 +8,6 @@ import { FavService } from '../fav.service';
 })
 export class FavtableComponent implements OnInit {
 
-  ticker;
-
   constructor(public favServ: FavService) { }
 
   @Input() favlist: any;
@@ -19,7 +17,7 @@ export class FavtableComponent implements OnInit {
   }
 
   changeTicker() {
-    this.ticker = 'Working!';
+    this.favServ.ticker = 'msft';
   }
 
   ngOnInit() {

@@ -18,6 +18,8 @@ export class FavService {
 
   favError;
 
+  ticker;
+
   constructor(public http: HttpClient) { }
 
   // get raw data on user favorites.  returns array of objects
