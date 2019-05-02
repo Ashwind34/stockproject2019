@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { headersToString } from 'selenium-webdriver/http';
 
+
 @Component({
   selector: 'app-quotetable',
   templateUrl: './quotetable.component.html',
@@ -19,7 +20,7 @@ export class QuotetableComponent implements OnInit {
   createTableData() {
     this.fullData = [];
     for (let i = 0; i < this.headers.length; i++ ) {
-      let item = {
+      const item = {
         header: this.headers[i],
         data: this.quoteData[i]
       }
