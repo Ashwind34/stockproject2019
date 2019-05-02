@@ -7,7 +7,7 @@ import { headersToString } from 'selenium-webdriver/http';
   templateUrl: './quotetable.component.html',
   styleUrls: ['./quotetable.component.scss']
 })
-export class QuotetableComponent implements OnInit {
+export class QuotetableComponent implements OnInit, OnChanges {
 
   constructor() { }
 
