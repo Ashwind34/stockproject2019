@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { headersToString } from 'selenium-webdriver/http';
+import { ApiService } from '../api.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { headersToString } from 'selenium-webdriver/http';
 })
 export class QuotetableComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor(public api: ApiService) { }
 
   @Input() quoteData: any;
 

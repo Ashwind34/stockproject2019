@@ -1,7 +1,7 @@
 <div class="clr-row clr-justify-content-sm-between">
     <div class='clr-col-sm-3'>
-        <div *ngIf='quote'>
-            <app-quotetable [quoteData]='quoteData'></app-quotetable>
+        <div *ngIf='api.quoteData'>
+            <app-quotetable [quoteData]='api.quoteData'></app-quotetable>
         </div>
     </div>
     <div class='clr-col-sm-6'>
@@ -12,9 +12,9 @@
             <input type=text name='tickerbox' [(ngModel)]='favServ.ticker'>
             <br>
             <br>
-            <button type='submit' (click)='getResults()'>Data</button>
+            <button type='submit' (click)='api.getResults(favServ.ticker)'>Data</button>
             <br>
-            <button type='submit' (click)='getQuote()'>Quote</button>
+            <button type='submit' (click)='api.getQuote(favServ.ticker)'>Quote</button>
             <br>
             <button type='submit' (click)='newFav()'>Add to Favorites</button>
             <br>

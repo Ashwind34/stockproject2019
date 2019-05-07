@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FavService } from '../fav.service';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-favtable',
@@ -8,7 +9,7 @@ import { FavService } from '../fav.service';
 })
 export class FavtableComponent implements OnInit {
 
-  constructor(public favServ: FavService) { }
+  constructor(public favServ: FavService, public api: ApiService) { }
 
   @Input() favlist: any;
 
@@ -18,6 +19,7 @@ export class FavtableComponent implements OnInit {
 
   changeTicker() {
     this.favServ.ticker = 'msft';
+    this.api.getQuote(this.favServ.ticker);
   }
 
   ngOnInit() {

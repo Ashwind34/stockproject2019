@@ -15,13 +15,13 @@ export class MainComponent implements OnInit {
 
   constructor(public api: ApiService, public favServ: FavService) { }
   
-  data;
+  // data;
 
-  quote;
+  // quote;
 
-  stockData;
+  // stockData;
 
-  quoteData;
+  // quoteData;
 
   token;
 
@@ -29,27 +29,27 @@ export class MainComponent implements OnInit {
 
   newFavItem = {};
 
-  getResults() {
-    this.api.apiCall(this.favServ.ticker)
-    .subscribe(
-      (response: any) => {
-        console.log(response);
-        this.data = response;
-    });
-  }
+  // getResults() {
+  //   this.api.apiCall(this.favServ.ticker)
+  //   .subscribe(
+  //     (response: any) => {
+  //       console.log(response);
+  //       this.data = response;
+  //   });
+  // }
 
-  getQuote() {
-    this.api.quoteCall(this.favServ.ticker)
-    .subscribe(
-      (response: any) => {
-        this.quote = response;
-        console.log(this.quote)
-        console.log(this.quote['Global Quote'])
-        console.log(Object.values(this.quote['Global Quote']))
-        this.quoteData = Object.values(this.quote['Global Quote'])
-      }
-    )
-  }
+  // getQuote() {
+  //   this.api.quoteCall(this.favServ.ticker)
+  //   .subscribe(
+  //     (response: any) => {
+  //       this.quote = response;
+  //       console.log(this.quote)
+  //       console.log(this.quote['Global Quote'])
+  //       console.log(Object.values(this.quote['Global Quote']))
+  //       this.quoteData = Object.values(this.quote['Global Quote'])
+  //     }
+  //   )
+  // }
 
   objTest() {
     console.log(this.favServ.getFavData(this.userId, this.token));
