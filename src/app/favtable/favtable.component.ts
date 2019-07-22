@@ -17,8 +17,8 @@ export class FavtableComponent implements OnInit {
     return index;
   }
 
-  changeTicker() {
-    this.favServ.ticker = 'msft';
+  changeTicker(ticker) {
+    this.favServ.ticker = ticker;
     this.api.getQuote(this.favServ.ticker);
   }
 

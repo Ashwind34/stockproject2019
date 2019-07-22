@@ -11,7 +11,7 @@
   <tr>
     <th>Favorites</th>
   </tr>
-  <tr *ngFor='let item of favServ.favList' (click)='changeTicker()'>
+  <tr *ngFor='let item of favServ.favList' (click)='changeTicker(item)'>
     <td>{{item}}</td>
   </tr>
   <tr *ngIf='ticker'>{{favServ.ticker}}</tr>
