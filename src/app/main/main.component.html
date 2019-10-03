@@ -1,30 +1,29 @@
 <div class="clr-row clr-justify-content-sm-between">
-    <div class='clr-col-sm-3'>
-        <div *ngIf='api.quoteData'>
-            <app-quotetable [quoteData]='api.quoteData'></app-quotetable>
-        </div>
+  <div class='clr-col-sm-5'>
+      <div style="text-align:center">
+          <h1>Select Company Ticker Symbol</h1>
+          <br>
+          <label for='tickerbox'>Enter Stock Ticker:</label>
+          <input type=text name='tickerbox' [(ngModel)]='favServ.ticker'>
+          <br>
+          <br>
+          <button type='submit' (click)='api.getResults(favServ.ticker)'>Data</button>
+          <br>
+          <button type='submit' (click)='api.getQuote(favServ.ticker)'>Quote</button>
+          <br>
+          <button type='submit' (click)='newFav()'>Add to Favorites</button>
+          <br>
+          <p *ngIf='favServ.favError'>{{favServ.favError}}</p>
+          <br>
+          <button type='submit' (click)='objTest()'>Tester</button>
     </div>
-    <div class='clr-col-sm-6'>
-        <div style="text-align:center">
-            <h1>Select Company Ticker Symbol</h1>
-            <br>
-            <label for='tickerbox'>Enter Stock Ticker:</label>
-            <input type=text name='tickerbox' [(ngModel)]='favServ.ticker'>
-            <br>
-            <br>
-            <button type='submit' (click)='api.getResults(favServ.ticker)'>Data</button>
-            <br>
-            <button type='submit' (click)='api.getQuote(favServ.ticker)'>Quote</button>
-            <br>
-            <button type='submit' (click)='newFav()'>Add to Favorites</button>
-            <br>
-            <p *ngIf='favServ.favError'>{{favServ.favError}}</p>
-            <br>
-            <button type='submit' (click)='objTest()'>Tester</button>
-        </div>
-    </div>
-    <div class='clr-col-sm-3'>
-        <app-favtable></app-favtable>
-    </div>
+  </div>
+  <div class='clr-col-sm-2' *ngIf='api.quoteData'>
+      <app-quotetable [quoteData]='api.quoteData'></app-quotetable>
+  </div>
+  <div class='clr-col-sm-2'>
+      <app-favtable class="fav"></app-favtable>
+  </div>
+  <div class="clr-col-sm-1"></div>
 </div>
 
