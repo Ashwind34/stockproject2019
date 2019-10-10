@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { headersToString } from 'selenium-webdriver/http';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 
 
 @Component({

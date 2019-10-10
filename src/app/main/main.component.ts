@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
-import { FavService } from '../fav.service';
+import { ApiService } from '../services/api.service';
+import { FavService } from '../services/fav.service';
 import { RegisterComponent } from '../register/register.component';
 import { FavtableComponent } from '../favtable/favtable.component';
 import { QuotetableComponent } from '../quotetable/quotetable.component';
@@ -14,7 +14,7 @@ import { QuotetableComponent } from '../quotetable/quotetable.component';
 export class MainComponent implements OnInit {
 
   constructor(public api: ApiService, public favServ: FavService) { }
-  
+
   // data;
 
   // quote;

@@ -4,8 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { routes } from './app.router';
 
-import { ApiService } from './api.service';
-import { UserService } from './user.service';
+import { ApiService } from './services/api.service';
+import { UserService } from './services/user.service';
+import { FavService } from './services/fav.service';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -35,7 +36,7 @@ import { QuotetableComponent } from './quotetable/quotetable.component';
     BrowserAnimationsModule,
     routes
   ],
-  providers: [ApiService, UserService],
+  providers: [ApiService, UserService, FavService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

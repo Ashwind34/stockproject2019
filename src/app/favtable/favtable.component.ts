@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FavService } from '../fav.service';
-import { ApiService } from '../api.service';
+import { FavService } from '../services/fav.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-favtable',
