@@ -34,8 +34,6 @@ export class RegisterComponent implements OnInit {
         sessionStorage.setItem('userId', response.userId);
       }, error => {
         this.errorMessage = error.status;
-        console.log('Error Status Code: ' + this.errorMessage);
-        console.log(error);
       }, () => {
           if (!this.errorMessage) {
             this.router.navigate(['/main']);
