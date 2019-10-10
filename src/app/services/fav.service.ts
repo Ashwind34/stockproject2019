@@ -11,14 +11,14 @@ export class FavService {
   favQuery: string = '/userFavs?access_token='
 
   // array of objects from getFav().subscribe
-  rawFavData;
+  rawFavData: any[];
 
   // list of unique tickers only, UPDATE LATER TO INCLUDE COMPANY NAME
-  favList = [];
+  favList: string[] = [];
 
-  favError;
+  favError: string = '';
 
-  ticker;
+  ticker: string = '';
 
   constructor(public http: HttpClient) { }
 
@@ -32,33 +32,29 @@ export class FavService {
     return array.filter((element, index) => array.indexOf(element) === index);
   }
 
+  // helper method to check if a ticker is already in the user favorites list
+  checkUniqueFav(array, ticker) {
+    return array.includes(ticker) ? false : true;
+  }
+
   // method to establish current user favorites list
   createFavList(id, token) {
     this.getFavData(id, token)
-    .subscribe(
-      (response: any) => {
-        this.rawFavData = response;
-        this.rawFavData.forEach(element => {
-          this.favList.push(element.ticker);
+      .subscribe(
+        (response: any) => {
+          this.rawFavData = response;
+          this.rawFavData.forEach(element => {
+            this.favList.push(element.ticker);
+          });
+          this.favList = this.uniqueFav(this.favList)
         });
-        this.favList = this.uniqueFav(this.favList)
-      });
   }
 
-  // helper method to check if a ticker is already in the user favorites list
-  checkUniqueFav(array, ticker) {
-    if (array.includes(ticker)) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  // method to add a new favorite to the list and return the updated list 
+  // method to add a new favorite to the list and return the updated list
   addFav(id, token, fav) {
     const unique = this.checkUniqueFav(this.favList, fav.ticker);
     if (unique) {
-      this.favError = '';
+      this.favError = null;
       return this.http.post(this.favUrl + id + this.favQuery + token, fav)
         .subscribe(
           (response: any) => {
