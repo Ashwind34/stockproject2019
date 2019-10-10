@@ -6,9 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FavService {
 
-  favUrl: string = 'http://localhost:3000/api/appUsers/'
+  favUrl: string = 'http://localhost:3000/api/appUsers'
 
-  favQuery: string = '/userFavs?access_token='
+  favQuery: string = 'userFavs?access_token='
 
   // array of objects from getFav().subscribe
   rawFavData: any[];
@@ -24,7 +24,11 @@ export class FavService {
 
   // get raw data on user favorites.  returns array of objects
   getFavData(id, token) {
-    return this.http.get(this.favUrl + id + this.favQuery + token);
+    return this.http.get(`${this.favUrl}/${id}/${this.favQuery}${token}`);
+  }
+
+  addNewFav(id, token, fav) {
+    return this.http.post(`${this.favUrl}/${id}/${this.favQuery}${token}`, fav);
   }
 
   // helper method to return an array without any duplicate entries
@@ -55,7 +59,7 @@ export class FavService {
     const unique = this.checkUniqueFav(this.favList, fav.ticker);
     if (unique) {
       this.favError = null;
-      return this.http.post(this.favUrl + id + this.favQuery + token, fav)
+      this.addNewFav(id, token, fav)
         .subscribe(
           (response: any) => {
             this.createFavList(id, token)
