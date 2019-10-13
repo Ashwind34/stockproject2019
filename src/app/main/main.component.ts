@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { FavService } from '../services/fav.service';
-import { RegisterComponent } from '../register/register.component';
-import { FavtableComponent } from '../favtable/favtable.component';
-import { QuotetableComponent } from '../quotetable/quotetable.component';
-
 
 @Component({
   selector: 'app-main',
@@ -13,13 +9,9 @@ import { QuotetableComponent } from '../quotetable/quotetable.component';
 })
 export class MainComponent implements OnInit {
 
-  constructor(public api: ApiService, public favServ: FavService) { }
-
-  // data;
+  data;
 
   quote;
-
-  // stockData;
 
   quoteData;
 
@@ -39,29 +31,7 @@ export class MainComponent implements OnInit {
 
   ticker: string = '';
 
-  // getResults() {
-  //   this.api.apiCall(this.favServ.ticker)
-  //   .subscribe(
-  //     (response: any) => {
-  //       console.log(response);
-  //       this.data = response;
-  //   });
-  // }
-
-  // getQuote() {
-  //   this.api.quoteCall(this.favServ.ticker)
-  //   .subscribe(
-  //     (response: any) => {
-  //       this.quote = response;
-  //       console.log(this.quote)
-  //       console.log(this.quote['Global Quote'])
-  //       console.log(Object.values(this.quote['Global Quote']))
-  //       this.quoteData = Object.values(this.quote['Global Quote'])
-  //     }
-  //   )
-  // }
-
-
+  constructor(public api: ApiService, public favServ: FavService) { }
 
   objTest() {
     console.log(this.favServ.getFavData(this.userId, this.token));
@@ -86,7 +56,7 @@ export class MainComponent implements OnInit {
 
   }
 
-    // method to establish current user favorites list
+  // method to establish current user favorites list
   createFavList(id, token) {
     this.favServ.getFavData(id, token)
       .subscribe((response: any) => {
@@ -97,13 +67,13 @@ export class MainComponent implements OnInit {
           this.favList.push(element.ticker);
         });
         console.log(this.favList)
-        this.favList = this.favServ.uniqueFav(this.favList)
+        this.favList = this.uniqueFav(this.favList)
       });
   }
 
   // method to add a new favorite to the list and return the updated list
   addFav(id, token, fav) {
-    const unique = this.favServ.checkUniqueFav(this.favList, fav.ticker);
+    const unique = this.checkUniqueFav(this.favList, fav.ticker);
     if (unique) {
       this.favError = null;
       this.favServ.addNewFav(id, token, fav)
@@ -117,18 +87,33 @@ export class MainComponent implements OnInit {
     }
   }
 
+    // helper method to return an array without any duplicate entries
+    uniqueFav(array) {
+      return array.filter((element, index) => array.indexOf(element) === index);
+    }
+
+    // helper method to check if a ticker is already in the user favorites list
+    checkUniqueFav(array, ticker) {
+      return array.includes(ticker) ? false : true;
+    }
+
   getQuote(ticker) {
-    console.log(ticker);
     this.api.quoteCall(ticker)
     .subscribe(
       (response: any) => {
         this.quote = response;
-        console.log(this.quote)
-        console.log(this.quote['Global Quote'])
-        console.log(Object.values(this.quote['Global Quote']))
         this.quoteData = Object.values(this.quote['Global Quote'])
       }
     )
+  }
+
+  getResults(ticker) {
+    this.api.apiCall(ticker)
+    .subscribe(
+      (response: any) => {
+        console.log(response);
+        this.data = response;
+    });
   }
 
 

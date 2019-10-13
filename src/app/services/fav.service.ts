@@ -20,14 +20,4 @@ export class FavService {
   addNewFav(id, token, fav) {
     return this.http.post(`${this.favUrl}/${id}/${this.favQuery}${token}`, fav);
   }
-
-  // helper method to return an array without any duplicate entries
-  uniqueFav(array) {
-    return array.filter((element, index) => array.indexOf(element) === index);
-  }
-
-  // helper method to check if a ticker is already in the user favorites list
-  checkUniqueFav(array, ticker) {
-    return array.includes(ticker) ? false : true;
-  }
 }
