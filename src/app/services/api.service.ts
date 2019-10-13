@@ -6,9 +6,9 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
 
   constructor(public http: HttpClient) { }
-  
+
   key: string = 'E6BYVBYEDEBLOQJI';
-  
+
   baseUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=FULL&'
 
   quoteUrl: string = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&'

@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FavService } from '../services/fav.service';
 import { ApiService } from '../services/api.service';
+
 
 @Component({
   selector: 'app-favtable',
@@ -11,15 +12,15 @@ export class FavtableComponent implements OnInit {
 
   constructor(public favServ: FavService, public api: ApiService) { }
 
-  @Input() favlist: any;
+  @Input() favList: any;
+  @Output() tickerChanged = new EventEmitter();
 
   trackTest(index: any, item: any) {
     return index;
   }
 
-  changeTicker(ticker) {
-    this.favServ.ticker = ticker;
-    this.api.getQuote(this.favServ.ticker);
+  changeTicker(i) {
+    this.tickerChanged.emit(this.favList[i]);
   }
 
   ngOnInit() {
