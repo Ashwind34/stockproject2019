@@ -3,7 +3,7 @@
     <th>Favorites</th>
   </tr>
   <tr *ngFor='let item of favList, let i = index;' (click)='changeTicker(i)'>
-    <td>{{item}}</td>
+    <td>{{item.ticker}}</td>
   </tr>
 </table>
 

@@ -25,7 +25,7 @@ export class MainComponent implements OnInit {
   rawFavData: any[];
 
   // list of unique tickers only, UPDATE LATER TO INCLUDE COMPANY NAME
-  favList: string[] = [];
+  favList;
 
   favError: string = '';
 
@@ -60,15 +60,13 @@ export class MainComponent implements OnInit {
   createFavList(id, token) {
     this.favServ.getFavData(id, token)
       .subscribe((response: any) => {
-        this.rawFavData = response;
-        console.log(response)
-        console.log(this.rawFavData)
-        this.rawFavData.forEach(element => {
-          this.favList.push(element.ticker);
+        this.favList = response;
+        console.log(this.favList);
+        // this.rawFavData.forEach(element => {
+        //   this.favList.push(element.ticker);
         });
-        console.log(this.favList)
-        this.favList = this.uniqueFav(this.favList)
-      });
+        // this.favList = this.uniqueFav(this.favList)
+        this.favList = new Set(this.favList);
   }
 
   // method to add a new favorite to the list and return the updated list
@@ -97,7 +95,11 @@ export class MainComponent implements OnInit {
       return array.includes(ticker) ? false : true;
     }
 
-  getQuote(ticker) {
+  getQuote(tickerData) {
+    let ticker = this.ticker;
+    if (tickerData.id) {
+      ticker = tickerData.ticker;
+    }
     this.api.quoteCall(ticker)
     .subscribe(
       (response: any) => {
