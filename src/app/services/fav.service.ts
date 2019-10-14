@@ -10,6 +10,8 @@ export class FavService {
 
   favQuery: string = 'userFavs?access_token='
 
+  favoritesUrl: string = 'http://localhost:3000/api/favorites'
+
   constructor(public http: HttpClient) { }
 
   // get raw data on user favorites.  returns array of objects
@@ -19,5 +21,9 @@ export class FavService {
 
   addNewFav(id, token, fav) {
     return this.http.post(`${this.favUrl}/${id}/${this.favQuery}${token}`, fav);
+  }
+
+  deleteFav(id) {
+    return this.http.delete(`${this.favoritesUrl}/${id}`)
   }
 }

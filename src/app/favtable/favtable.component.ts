@@ -23,6 +23,14 @@ export class FavtableComponent implements OnInit {
     this.tickerChanged.emit(this.favList[i]);
   }
 
+  deleteTicker(i) {
+    console.log(this.favList[i])
+    this.favServ.deleteFav(this.favList[i].id)
+    .subscribe(() => {
+      console.log(`${this.favList[i].id} was deleted`)
+    });
+  }
+
   ngOnInit() {
   }
 }

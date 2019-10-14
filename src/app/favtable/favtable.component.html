@@ -2,8 +2,12 @@
   <tr>
     <th>Favorites</th>
   </tr>
-  <tr *ngFor='let item of favList, let i = index;' (click)='changeTicker(i)'>
-    <td>{{item.ticker}}</td>
+  <!-- <tr *ngFor='let item of favList, let i = index;' (click)='changeTicker(i)'> -->
+  <tr *ngFor='let item of favList, let i = index;'>
+    <td  (click)='changeTicker(i)'>{{item.ticker}}</td>
+    <td>
+      <button (click)="deleteTicker(i)">Delete</button>
+    </td>
   </tr>
 </table>
 
