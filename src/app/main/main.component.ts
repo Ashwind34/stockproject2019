@@ -86,7 +86,6 @@ export class MainComponent implements OnInit {
       (response: any) => {
         this.quote = response;
         this.quoteData = Object.values(this.quote['Global Quote'])
-        this.ticker = '';
       }
     )
   }
