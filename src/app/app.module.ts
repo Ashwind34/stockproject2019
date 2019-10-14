@@ -36,7 +36,7 @@ import { QuotetableComponent } from './quotetable/quotetable.component';
     BrowserAnimationsModule,
     routes
   ],
-  providers: [ApiService, UserService, FavService,],
+  providers: [ApiService, UserService, FavService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,7 @@ import { LandingComponent } from './landing/landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 export const router: Routes = [
-    { path: '', redirectTo: 'landing', pathMatch: 'full'},
+    { path: '', redirectTo: 'main', pathMatch: 'full'},
     { path: 'landing', component: LandingComponent},
     { path: 'register', component: RegisterComponent},
     { path : 'main', component: MainComponent },

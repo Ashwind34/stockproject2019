@@ -6,20 +6,12 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
 
   constructor(public http: HttpClient) { }
-  
+
   key: string = 'E6BYVBYEDEBLOQJI';
-  
+
   baseUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=FULL&'
 
   quoteUrl: string = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&'
-
-  data;
-
-  quote;
-
-  stockData;
-
-  quoteData;
 
   // api call for time series data
   // NEED TO FIND OUT HOW TO ACCESS COMPANY NAME
@@ -40,27 +32,4 @@ export class ApiService {
       '&apikey=' + this.key
     )
   }
-
-  getResults(ticker) {
-    this.apiCall(ticker)
-    .subscribe(
-      (response: any) => {
-        console.log(response);
-        this.data = response;
-    });
-  }
-
-  getQuote(ticker) {
-    this.quoteCall(ticker)
-    .subscribe(
-      (response: any) => {
-        this.quote = response;
-        console.log(this.quote)
-        console.log(this.quote['Global Quote'])
-        console.log(Object.values(this.quote['Global Quote']))
-        this.quoteData = Object.values(this.quote['Global Quote'])
-      }
-    )
-  }
-
 }
