@@ -38,9 +38,10 @@ export class MainComponent implements OnInit {
   // method to establish current user favorites list
   createFavList(changed = '') {
     if (this.token) {
+      this.favList = [{ticker: 'Add stocks to your favorites!'}]
       this.favServ.getFavData(this.userId, this.token)
       .subscribe((response: any) => {
-        this.favList = response;
+        if (response.length > 0) this.favList = response;
       });
     } else {
       this.favList = [{ticker: 'Login to see your favorites!'}];
