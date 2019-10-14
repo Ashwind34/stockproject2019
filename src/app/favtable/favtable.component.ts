@@ -14,6 +14,7 @@ export class FavtableComponent implements OnInit {
 
   @Input() favList: any;
   @Output() tickerChanged = new EventEmitter();
+  @Output() tickerDeleted = new EventEmitter();
 
   trackTest(index: any, item: any) {
     return index;
@@ -27,7 +28,7 @@ export class FavtableComponent implements OnInit {
     console.log(this.favList[i])
     this.favServ.deleteFav(this.favList[i].id)
     .subscribe(() => {
-      console.log(`${this.favList[i].id} was deleted`)
+      this.tickerDeleted.emit('deleted')
     });
   }
 
