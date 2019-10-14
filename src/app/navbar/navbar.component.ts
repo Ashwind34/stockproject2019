@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
     const token = sessionStorage.getItem('token');
     this.userService.userLogout(token)
     .subscribe(() => {
-      console.log('logged out');
+      console.log('Logged Out')
     });
   }
 

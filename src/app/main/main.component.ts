@@ -33,18 +33,6 @@ export class MainComponent implements OnInit {
 
   constructor(public api: ApiService, public favServ: FavService) { }
 
-  objTest() {
-    console.log(this.favServ.getFavData(this.userId, this.token));
-    console.log(this.createFavList());
-    this.favServ.getFavData(this.userId, this.token)
-    .subscribe(
-      response => {
-        console.log(response);
-      }
-    );
-  }
-
-
   // method to establish current user favorites list
   createFavList(changed = '') {
     this.favServ.getFavData(this.userId, this.token)
@@ -107,7 +95,6 @@ export class MainComponent implements OnInit {
     this.api.apiCall(ticker)
     .subscribe(
       (response: any) => {
-        console.log(response);
         this.data = response;
     });
   }

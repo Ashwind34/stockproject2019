@@ -10,17 +10,9 @@
             <br>
             <label for='tickerbox'>Enter Stock Ticker:</label>
             <input type=text name='tickerbox' [(ngModel)]='ticker'>
-            <br>
-            <br>
-            <button type='submit' (click)='getResults(ticker)'>Data</button>
-            <br>
             <button type='submit' (click)='getQuote(ticker)'>Quote</button>
-            <br>
             <button type='submit' (click)='newFav()'>Add to Favorites</button>
-            <br>
             <p *ngIf='favError'>{{favError}}</p>
-            <br>
-            <button type='submit' (click)='objTest()'>Tester</button>
         </div>
     </div>
     <div class='clr-col-sm-3'>

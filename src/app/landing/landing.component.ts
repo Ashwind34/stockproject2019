@@ -33,7 +33,6 @@ export class LandingComponent implements OnInit {
     .subscribe(
       (response: any) => {
         this.user = response;
-        console.log(this.user);
         sessionStorage.setItem('token', response.token);
         sessionStorage.setItem('userId', response.userId);
       }, error => {
@@ -54,9 +53,7 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(sessionStorage.getItem('token'))
     this.token = sessionStorage.getItem('token')
-    console.log('Token Property ' + this.token)
   }
 
 }
