@@ -1,0 +1,12 @@
+.userInput {
+  display: flex;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 0.125rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+}
