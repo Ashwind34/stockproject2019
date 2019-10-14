@@ -14,7 +14,7 @@
             <br>
             <button type='submit' (click)='getQuote(ticker)'>Quote</button>
             <br>
-            <button type='submit' (click)='newFav()'>Add to Favorites</button>
+            <button *ngIf="token" type='submit' (click)='newFav()'>Add to Favorites</button>
             <br>
             <p *ngIf='favError'>{{favError}}</p>
             <p *ngIf='quoteError'>{{quoteError}}</p>
