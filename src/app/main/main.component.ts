@@ -54,7 +54,6 @@ export class MainComponent implements OnInit {
 
   newFav() {
     this.newFavItem = {
-      //NEED TO UPDATE THIS WITH COMPANY NAME INFO LATER
       name: 'Placeholder',
       ticker: this.ticker.toUpperCase(),
       userId: this.userId
@@ -104,14 +103,6 @@ export class MainComponent implements OnInit {
         }
       }
     )
-  }
-
-  getResults(ticker) {
-    this.api.apiCall(ticker)
-    .subscribe(
-      (response: any) => {
-        this.data = response;
-    });
   }
 
   ngOnInit() {

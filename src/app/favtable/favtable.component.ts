@@ -21,7 +21,7 @@ export class FavtableComponent implements OnInit {
   }
 
   changeTicker(i) {
-    this.tickerChanged.emit(this.favList[i]);
+    if (this.favList[i]) this.tickerChanged.emit(this.favList[i]);
   }
 
   deleteTicker(i) {
