@@ -22,4 +22,8 @@ export class UserService {
     )
   }
 
+  userLogout(token) {
+    return this.http.post(`${this.userUrl}/logout?access_token=${token}`)
+  }
+
 }
