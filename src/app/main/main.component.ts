@@ -13,7 +13,7 @@ export class MainComponent implements OnInit {
 
   quote;
 
-  quoteData;
+  quoteData = Array(10).fill('------');
 
   token: string;
 
