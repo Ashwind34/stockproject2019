@@ -27,7 +27,9 @@ export class MainComponent implements OnInit {
 
   favListIds: string[];
 
-  favError: string = '';
+  favError: string;
+
+  quoteError: string;
 
   ticker: string = '';
 
@@ -77,6 +79,7 @@ export class MainComponent implements OnInit {
   }
 
   getQuote(tickerData) {
+    this.quoteError = null;
     let ticker = this.ticker;
     if (tickerData.id) {
       ticker = tickerData.ticker;
@@ -85,7 +88,11 @@ export class MainComponent implements OnInit {
     .subscribe(
       (response: any) => {
         this.quote = response;
-        this.quoteData = Object.values(this.quote['Global Quote'])
+        if (this.quote['Global Quote']) {
+          this.quoteData = Object.values(this.quote['Global Quote'])
+        } else {
+          this.quoteError = "Ticker Invalid.  Please use a valid stock ticker."
+        }
       }
     )
   }
