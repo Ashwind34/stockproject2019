@@ -67,6 +67,7 @@ export class MainComponent implements OnInit {
   // method to add a new favorite to the list and return the updated list
   addFav(id, token, fav) {
     const tickerInFavList = this.checkUniqueFav(this.favList, fav.ticker);
+    console.log(this.isTickerInputValid(fav));
     if (!tickerInFavList) {
       this.favError = null;
       this.favServ.addNewFav(id, token, fav)
@@ -87,6 +88,19 @@ export class MainComponent implements OnInit {
     return array.some(stock => stock.ticker === ticker);
   }
 
+  isTickerInputValid (ticker) {
+    let valid: boolean = true;
+    this.api.quoteCall(ticker)
+    .subscribe((response) => {
+      console.log(response)
+      if(response['Error Message']) {
+        this.quoteError = "Ticker Invalid.  Please use a valid stock symbol."
+        valid = false;
+      }
+    });
+    return valid;
+  }
+
   getQuote(tickerData) {
     this.quoteError = null;
     let ticker = this.ticker;
@@ -96,11 +110,12 @@ export class MainComponent implements OnInit {
     this.api.quoteCall(ticker)
     .subscribe(
       (response: any) => {
+        console.log(response)
         this.quote = response;
         if (this.quote['Global Quote']) {
           this.quoteData = Object.values(this.quote['Global Quote'])
         } else {
-          this.quoteError = "Ticker Invalid.  Please use a valid stock ticker."
+          this.quoteError = "Ticker Invalid.  Please use a valid stock symbol."
         }
       }
     )
