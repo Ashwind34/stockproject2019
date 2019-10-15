@@ -8,15 +8,9 @@ import { UserService } from '../services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  // USE THIS PROPERTY TO DISPLAY USER NAME
-
-  userData;
-
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
-    this.getCurrentUser();
-  }
+  ngOnInit() {}
 
   logout() {
     const token = sessionStorage.getItem('token');
@@ -27,15 +21,4 @@ export class NavbarComponent implements OnInit {
       sessionStorage.removeItem('token');
     });
   }
-
-  //NEED TO SET UP AUTHENTICATION FOR GET REQUESTS TO USE THIS
-  getCurrentUser() {
-    const id = sessionStorage.getItem('userId');
-    this.userService.getUser(id)
-    .subscribe((response) => {
-      this.userData = response;
-      console.log(this.userData)
-    });
-  }
-
 }

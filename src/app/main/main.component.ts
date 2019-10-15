@@ -9,28 +9,16 @@ import { FavService } from '../services/fav.service';
 })
 export class MainComponent implements OnInit {
 
-  data;
-
   quote;
-
   quoteData = Array(10).fill('------');
-
   token: string;
-
   userId: string;
-
   newFavItem = {};
-
   favList = [];
-
   favListTickers: string[];
-
   favListIds: string[];
-
   favError: string;
-
   quoteError: string;
-
   ticker: string = '';
 
   constructor(public api: ApiService, public favServ: FavService) { }
@@ -49,6 +37,12 @@ export class MainComponent implements OnInit {
     } else {
       this.favList = [{ticker: 'Login to see your favorites!'}];
     }
+  }
+
+  ngOnInit() {
+    this.token = sessionStorage.getItem('token');
+    this.userId = sessionStorage.getItem('userId');
+    this.createFavList();
   }
 
 
@@ -119,20 +113,6 @@ export class MainComponent implements OnInit {
         }
       }
     )
-  }
-
-  getResults(ticker) {
-    this.api.apiCall(ticker)
-    .subscribe(
-      (response: any) => {
-        this.data = response;
-    });
-  }
-
-  ngOnInit() {
-    this.token = sessionStorage.getItem('token');
-    this.userId = sessionStorage.getItem('userId');
-    this.createFavList();
   }
 }
 
