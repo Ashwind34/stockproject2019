@@ -56,43 +56,23 @@ export class MainComponent implements OnInit {
     this.addFav(this.userId, this.token, this.newFavItem);
   }
 
-  // method to add a new favorite to the list and update the list
-  // addFav(id, token, fav) {
-  //   const tickerInFavList = this.checkUniqueFav(this.favList, fav.ticker);
-  //   if (!tickerInFavList) {
-  //     this.api.quoteCall(fav.ticker).pipe(
-  //       takeWhile(quoteRes => {
-  //         if (quoteRes['Error Message']) {
-  //           this.errorMessage = "Ticker Invalid.  Please use a valid stock symbol.";
-  //           return false;
-  //         }
-  //         return true;
-  //       }),
-  //       mergeMap(() => this.favServ.addNewFav(id, token, fav))
-  //     ).subscribe(() => {
-  //       this.createFavList();
-  //       this.ticker = '';
-  //     });
-  //   }
-  // }
-
+  // method to add new favorites to. includes checks to make sure ticker is not
+  // in existing list and checks to make sure ticker is available from api
   addFav(id, token, fav) {
     const tickerInFavList = this.checkUniqueFav(this.favList, fav.ticker);
     if (!tickerInFavList) {
       this.api.quoteCall(fav.ticker).pipe(
-        switchMap((response) => {
+        mergeMap((response) => {
           if (response['Error Message']) {
             this.errorMessage = "Ticker Invalid.  Please use a valid stock symbol.";
             return empty();
           } else {
-            return of({});
+            return this.favServ.addNewFav(id, token, fav);
           }
-        }),
-        mergeMap(() => this.favServ.addNewFav(id, token, fav)))
-        .subscribe(() => {
+        })).subscribe(() => {
           this.createFavList();
           this.ticker = null;
-      });
+        });
     } else {
       this.errorMessage = "That stock is already in your favorites list!";
     }
