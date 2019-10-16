@@ -1,4 +1,14 @@
 .table td {
   vertical-align: baseline;
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 1rem;
+}
+
+tr {
+  height: 1.75rem;
+}
+
+th {
+  font-size: 17px;
+  line-height: 1rem;
 }
