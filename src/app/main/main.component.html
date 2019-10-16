@@ -10,10 +10,10 @@
       <input type=text name='tickerbox' [(ngModel)]='ticker'>
       <br>
       <br>
-      <button type='submit' (click)='getQuote(ticker)'>Get Quote</button>
+      <button class="btn btn-primary" type='submit' (click)='getQuote(ticker)'>Get Quote</button>
       <br>
       <br>
-      <button *ngIf="token" type='submit' (click)='addFav()'>Add to Favorites</button>
+      <button class="btn btn-primary" *ngIf="token" type='submit' (click)='addFav()'>Add to Favorites</button>
       <br>
       <p *ngIf='errorMessage'>{{errorMessage}}</p>
     </div>

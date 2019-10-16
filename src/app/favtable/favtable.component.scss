@@ -1,0 +1,22 @@
+.table td {
+  vertical-align: baseline;
+  padding: 0.35rem;
+  font-size: 16px;
+}
+
+.right {
+  text-align: right;
+}
+
+clr-icon {
+  color:#0079b8;
+  font-size:16px;
+  height: 24px;
+  width: 24px;
+}
+
+clr-icon:hover {
+  color:white;
+  background-color: red;
+  border: 1.25px solid #0079b8;
+}
