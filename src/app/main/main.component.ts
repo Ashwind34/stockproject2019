@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { FavService } from '../services/fav.service';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main',
@@ -19,7 +20,10 @@ export class MainComponent implements OnInit {
   favListIds: string[];
   favError: string;
   quoteError: string;
+  apiCallsError: string;
+  quoteValid: boolean = true;
   ticker: string = '';
+  apiCallsErrorMessage: string = 'if you would like to target a higher API call frequency'
 
   constructor(public api: ApiService, public favServ: FavService) { }
 
@@ -61,16 +65,19 @@ export class MainComponent implements OnInit {
   // method to add a new favorite to the list and return the updated list
   addFav(id, token, fav) {
     const tickerInFavList = this.checkUniqueFav(this.favList, fav.ticker);
-    console.log(this.isTickerInputValid(fav));
+    this.isTickerInputValid(fav);
     if (!tickerInFavList) {
       this.favError = null;
-      this.favServ.addNewFav(id, token, fav)
-        .subscribe(
-          (response: any) => {
-            this.createFavList()
-            this.ticker = '';
-          }
-        );
+      this.quoteError = null;
+      // this.favServ.addNewFav(id, token, fav).pipe(
+      //   mergeMap(ticker => this.isTickerInputValid(ticker))
+      // )
+      //   .subscribe(
+      //     (response: any) => {
+      //       this.createFavList()
+      //       this.ticker = '';
+      //     }
+      //   );
     } else {
       this.favError = 'That stock is already in your favorites!';
       this.ticker = '';
@@ -83,16 +90,14 @@ export class MainComponent implements OnInit {
   }
 
   isTickerInputValid (ticker) {
-    let valid: boolean = true;
     this.api.quoteCall(ticker)
     .subscribe((response) => {
       console.log(response)
       if(response['Error Message']) {
         this.quoteError = "Ticker Invalid.  Please use a valid stock symbol."
-        valid = false;
+        this.quoteValid = false;
       }
     });
-    return valid;
   }
 
   getQuote(tickerData) {
@@ -105,9 +110,12 @@ export class MainComponent implements OnInit {
     .subscribe(
       (response: any) => {
         console.log(response)
+        console.log(Object.values(response))
         this.quote = response;
         if (this.quote['Global Quote']) {
           this.quoteData = Object.values(this.quote['Global Quote'])
+        } else if (Object.values(this.quote).join().includes(this.apiCallsErrorMessage)){
+          this.quoteError = "Our API request limit is 5 per minute. Please wait and try again."
         } else {
           this.quoteError = "Ticker Invalid.  Please use a valid stock symbol."
         }
