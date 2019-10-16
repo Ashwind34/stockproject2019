@@ -15,8 +15,7 @@
       <br>
       <button *ngIf="token" type='submit' (click)='newFav()'>Add to Favorites</button>
       <br>
-      <p *ngIf='favError'>{{favError}}</p>
-      <p *ngIf='quoteError'>{{quoteError}}</p>
+      <p *ngIf='errorMessage'>{{errorMessage}}</p>
     </div>
   </div>
   <div class='clr-col-sm-3'>

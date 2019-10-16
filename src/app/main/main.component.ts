@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { FavService } from '../services/fav.service';
-import { takeWhile, mergeMap } from 'rxjs/operators';
+import { empty, of } from 'rxjs';
+import { mergeMap, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main',
@@ -18,7 +19,7 @@ export class MainComponent implements OnInit {
   favList = [];
   favListTickers: string[];
   favListIds: string[];
-  quoteError: string;
+  errorMessage: string;
   ticker: string = '';
   apiCallsErrorMessage: string = 'if you would like to target a higher API call frequency';
 
@@ -47,6 +48,7 @@ export class MainComponent implements OnInit {
   }
 
   newFav() {
+    this.errorMessage = null;
     this.newFavItem = {
       ticker: this.ticker.toUpperCase(),
       userId: this.userId
@@ -55,22 +57,44 @@ export class MainComponent implements OnInit {
   }
 
   // method to add a new favorite to the list and update the list
+  // addFav(id, token, fav) {
+  //   const tickerInFavList = this.checkUniqueFav(this.favList, fav.ticker);
+  //   if (!tickerInFavList) {
+  //     this.api.quoteCall(fav.ticker).pipe(
+  //       takeWhile(quoteRes => {
+  //         if (quoteRes['Error Message']) {
+  //           this.errorMessage = "Ticker Invalid.  Please use a valid stock symbol.";
+  //           return false;
+  //         }
+  //         return true;
+  //       }),
+  //       mergeMap(() => this.favServ.addNewFav(id, token, fav))
+  //     ).subscribe(() => {
+  //       this.createFavList();
+  //       this.ticker = '';
+  //     });
+  //   }
+  // }
+
   addFav(id, token, fav) {
     const tickerInFavList = this.checkUniqueFav(this.favList, fav.ticker);
     if (!tickerInFavList) {
       this.api.quoteCall(fav.ticker).pipe(
-        takeWhile(quoteRes => {
-          if (quoteRes['Error Message']) {
-            this.quoteError = "Ticker Invalid.  Please use a valid stock symbol.";
-            return false;
+        switchMap((response) => {
+          if (response['Error Message']) {
+            this.errorMessage = "Ticker Invalid.  Please use a valid stock symbol.";
+            return empty();
+          } else {
+            return of({});
           }
-          return true;
         }),
-        mergeMap(() => this.favServ.addNewFav(id, token, fav))
-      ).subscribe(() => {
-        this.createFavList();
-        this.ticker = '';
+        mergeMap(() => this.favServ.addNewFav(id, token, fav)))
+        .subscribe(() => {
+          this.createFavList();
+          this.ticker = null;
       });
+    } else {
+      this.errorMessage = "That stock is already in your favorites list!";
     }
   }
 
@@ -80,10 +104,11 @@ export class MainComponent implements OnInit {
   }
 
   getQuote(tickerData) {
-    this.quoteError = null;
+    this.errorMessage = null;
     let ticker = this.ticker;
     if (tickerData.id) {
       ticker = tickerData.ticker;
+      this.ticker = null;
     }
     this.api.quoteCall(ticker)
     .subscribe(
@@ -92,9 +117,9 @@ export class MainComponent implements OnInit {
         if (this.quote['Global Quote']) {
           this.quoteData = Object.values(this.quote['Global Quote']);
         } else if (Object.values(this.quote).join().includes(this.apiCallsErrorMessage)){
-          this.quoteError = "Our API request limit is 5 per minute. Please wait and try again.";
+          this.errorMessage = "Our API request limit is 5 per minute. Please wait and try again.";
         } else {
-          this.quoteError = "Ticker Invalid.  Please use a valid stock symbol.";
+          this.errorMessage = "Ticker Invalid.  Please use a valid stock symbol.";
         }
       }
     )
