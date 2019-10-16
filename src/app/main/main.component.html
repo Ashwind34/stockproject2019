@@ -1,28 +1,26 @@
 <div class="clr-row clr-justify-content-sm-around">
-    <div class='clr-col-sm-3'>
-        <div>
-            <app-quotetable [quoteData]='quoteData'></app-quotetable>
-        </div>
+  <div class='clr-col-sm-3'>
+    <app-quotetable [quoteData]='quoteData'></app-quotetable>
+  </div>
+  <div class='clr-col-sm-4 userInput'>
+    <div>
+      <h1>Select Company Ticker Symbol</h1>
+      <br>
+      <label for='tickerbox'>Enter Stock Ticker:</label>
+      <input type=text name='tickerbox' [(ngModel)]='ticker'>
+      <br>
+      <br>
+      <button type='submit' (click)='getQuote(ticker)'>Get Quote</button>
+      <br>
+      <br>
+      <button *ngIf="token" type='submit' (click)='newFav()'>Add to Favorites</button>
+      <br>
+      <p *ngIf='favError'>{{favError}}</p>
+      <p *ngIf='quoteError'>{{quoteError}}</p>
     </div>
-    <div class='clr-col-sm-4 userInput'>
-        <div>
-            <h1>Select Company Ticker Symbol</h1>
-            <br>
-            <label for='tickerbox'>Enter Stock Ticker:</label>
-            <input type=text name='tickerbox' [(ngModel)]='ticker'>
-            <br>
-            <br>
-            <button type='submit' (click)='getQuote(ticker)'>Get Quote</button>
-            <br>
-            <br>
-            <button *ngIf="token" type='submit' (click)='newFav()'>Add to Favorites</button>
-            <br>
-            <p *ngIf='favError'>{{favError}}</p>
-            <p *ngIf='quoteError'>{{quoteError}}</p>
-        </div>
-    </div>
-    <div class='clr-col-sm-3'>
-        <app-favtable [favList]="favList" (tickerChanged)='getQuote($event)' (tickerDeleted)='createFavList($event)'></app-favtable>
-    </div>
+  </div>
+  <div class='clr-col-sm-3'>
+    <app-favtable [favList]="favList" (tickerChanged)='getQuote($event)' (tickerDeleted)='createFavList($event)'></app-favtable>
+  </div>
 </div>
 

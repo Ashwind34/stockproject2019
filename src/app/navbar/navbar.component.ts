@@ -14,7 +14,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     const token = sessionStorage.getItem('token');
-    console.log(token)
     this.userService.userLogout(token)
     .subscribe(() => {
       sessionStorage.removeItem('userId');

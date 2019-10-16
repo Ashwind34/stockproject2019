@@ -26,7 +26,7 @@ import { QuotetableComponent } from './quotetable/quotetable.component';
     LandingComponent,
     NavbarComponent,
     FavtableComponent,
-    QuotetableComponent,
+    QuotetableComponent
   ],
   imports: [
     BrowserModule,

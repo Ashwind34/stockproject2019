@@ -10,7 +10,7 @@ import { takeWhile, mergeMap } from 'rxjs/operators';
 })
 export class MainComponent implements OnInit {
 
-  quote;
+  quote: any;
   quoteData = Array(10).fill('------');
   token: string;
   userId: string;
@@ -18,17 +18,14 @@ export class MainComponent implements OnInit {
   favList = [];
   favListTickers: string[];
   favListIds: string[];
-  favError: string;
   quoteError: string;
-  apiCallsError: string;
-  quoteValid: boolean = true;
   ticker: string = '';
-  apiCallsErrorMessage: string = 'if you would like to target a higher API call frequency'
+  apiCallsErrorMessage: string = 'if you would like to target a higher API call frequency';
 
   constructor(public api: ApiService, public favServ: FavService) { }
 
   // method to establish current user favorites list
-  createFavList(changed = '') {
+  createFavList(event = '') {
     if (this.token) {
       this.favServ.getFavData(this.userId, this.token)
       .subscribe((response: any) => {
@@ -51,8 +48,6 @@ export class MainComponent implements OnInit {
 
   newFav() {
     this.newFavItem = {
-      //NEED TO UPDATE THIS WITH COMPANY NAME INFO LATER
-      name: 'Placeholder',
       ticker: this.ticker.toUpperCase(),
       userId: this.userId
     }
@@ -95,11 +90,11 @@ export class MainComponent implements OnInit {
       (response: any) => {
         this.quote = response;
         if (this.quote['Global Quote']) {
-          this.quoteData = Object.values(this.quote['Global Quote'])
+          this.quoteData = Object.values(this.quote['Global Quote']);
         } else if (Object.values(this.quote).join().includes(this.apiCallsErrorMessage)){
-          this.quoteError = "Our API request limit is 5 per minute. Please wait and try again."
+          this.quoteError = "Our API request limit is 5 per minute. Please wait and try again.";
         } else {
-          this.quoteError = "Ticker Invalid.  Please use a valid stock symbol."
+          this.quoteError = "Ticker Invalid.  Please use a valid stock symbol.";
         }
       }
     )

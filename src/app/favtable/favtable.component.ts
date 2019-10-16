@@ -27,7 +27,7 @@ export class FavtableComponent implements OnInit {
   deleteTicker(i) {
     this.favServ.deleteFav(this.favList[i].id)
     .subscribe(() => {
-      this.tickerDeleted.emit('deleted')
+      this.tickerDeleted.emit('deleted');
     });
   }
 

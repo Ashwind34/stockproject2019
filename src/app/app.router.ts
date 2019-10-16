@@ -8,11 +8,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 export const router: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full'},
-    { path: 'landing', component: LandingComponent},
+    { path: 'login', component: LandingComponent},
     { path: 'register', component: RegisterComponent},
     { path : 'main', component: MainComponent },
     { path : 'navbar', component: NavbarComponent}
-
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

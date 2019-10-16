@@ -8,7 +8,7 @@ export class UserService {
 
   constructor(public http: HttpClient) { }
 
-  userUrl: string = 'http://localhost:3000/api/appUsers'
+  userUrl: string = 'http://localhost:3000/api/appUsers';
 
   // api calls to interact with backend
 
@@ -17,9 +17,7 @@ export class UserService {
   }
 
   userLogin(userData) {
-    return this.http.post(
-      this.userUrl + '/login/', userData
-    );
+    return this.http.post(this.userUrl + '/login/', userData);
   }
 
   userLogout(token) {
