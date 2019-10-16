@@ -13,7 +13,7 @@
       <button type='submit' (click)='getQuote(ticker)'>Get Quote</button>
       <br>
       <br>
-      <button *ngIf="token" type='submit' (click)='newFav()'>Add to Favorites</button>
+      <button *ngIf="token" type='submit' (click)='addFav()'>Add to Favorites</button>
       <br>
       <p *ngIf='errorMessage'>{{errorMessage}}</p>
     </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { FavService } from '../services/fav.service';
-import { empty, of } from 'rxjs';
-import { mergeMap, switchMap } from 'rxjs/operators';
+import { empty } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main',
@@ -25,8 +25,14 @@ export class MainComponent implements OnInit {
 
   constructor(public api: ApiService, public favServ: FavService) { }
 
+  ngOnInit() {
+    this.token = sessionStorage.getItem('token');
+    this.userId = sessionStorage.getItem('userId');
+    this.createFavList();
+  }
+
   // method to establish current user favorites list
-  createFavList(event = '') {
+  createFavList(event = null) {
     if (this.token) {
       this.favServ.getFavData(this.userId, this.token)
       .subscribe((response: any) => {
@@ -41,33 +47,27 @@ export class MainComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.token = sessionStorage.getItem('token');
-    this.userId = sessionStorage.getItem('userId');
-    this.createFavList();
-  }
+  // method to add new favorites to. includes checks to make sure ticker is not
+  // in existing list and checks to make sure ticker is available from api
 
-  newFav() {
+  addFav() {
     this.errorMessage = null;
-    this.newFavItem = {
+    const newFav = {
       ticker: this.ticker.toUpperCase(),
       userId: this.userId
     }
-    this.addFav(this.userId, this.token, this.newFavItem);
-  }
 
-  // method to add new favorites to. includes checks to make sure ticker is not
-  // in existing list and checks to make sure ticker is available from api
-  addFav(id, token, fav) {
-    const tickerInFavList = this.checkUniqueFav(this.favList, fav.ticker);
+    const tickerInFavList = this.favList.some(stock => stock.ticker === newFav.ticker);
+
+  // only add newFav object to user favorites if no error when retrieving quote data
     if (!tickerInFavList) {
-      this.api.quoteCall(fav.ticker).pipe(
+      this.api.quoteCall(newFav.ticker).pipe(
         mergeMap((response) => {
           if (response['Error Message']) {
-            this.errorMessage = "Ticker Invalid.  Please use a valid stock symbol.";
+            this.errorMessage = "Ticker Invalid.  Please use a valid ticker symbol.";
             return empty();
           } else {
-            return this.favServ.addNewFav(id, token, fav);
+            return this.favServ.addNewFav(this.userId, this.token, newFav);
           }
         })).subscribe(() => {
           this.createFavList();
@@ -78,10 +78,8 @@ export class MainComponent implements OnInit {
     }
   }
 
-  // helper method to check if a ticker is already in the user favorites list
-  checkUniqueFav(array, ticker) {
-    return array.some(stock => stock.ticker === ticker);
-  }
+  // method to get stock data.  messy error handling because api does not return an http error
+  // on bad requests, returns 200 with object that has error message properties
 
   getQuote(tickerData) {
     this.errorMessage = null;
@@ -99,7 +97,7 @@ export class MainComponent implements OnInit {
         } else if (Object.values(this.quote).join().includes(this.apiCallsErrorMessage)){
           this.errorMessage = "Our API request limit is 5 per minute. Please wait and try again.";
         } else {
-          this.errorMessage = "Ticker Invalid.  Please use a valid stock symbol.";
+          this.errorMessage = "Ticker Invalid.  Please use a valid ticker symbol.";
         }
       }
     )
