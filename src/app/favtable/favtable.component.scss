@@ -32,6 +32,8 @@ clr-icon.view:hover {
 .scroll {
   max-height: 11 * 1.75rem;
   overflow: auto;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0.125rem;
 }
 
 .table td {
