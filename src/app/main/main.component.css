@@ -5,17 +5,16 @@ h1 {
 input[type=text] {
   width: 8rem;
   height: 1.5rem;
-  padding: 0 ;
   border: 1.5px solid #0079b8;
   border-radius: 0.125rem;
 }
 
 label {
-  font-size: 1.17rem;
+  font-size: 1rem;
 }
 
 .tickerbox {
-  line-height: 2rem;
+  margin: 0.5rem;
 }
 
 .userInput {

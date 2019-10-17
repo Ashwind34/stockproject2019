@@ -1,33 +1,33 @@
 <div class="clr-row clr-justify-content-sm-around">
-  <div class='clr-col-sm-3'>
-    <app-favtable [favList]="favList" (tickerChanged)='getQuote($event)' (tickerDeleted)='createFavList()'></app-favtable>
-  </div>
   <div class='clr-col-sm-4 userInput'>
-      <div>
-        <h1>Select Company Ticker Symbol</h1>
+    <div>
+      <h1>Welcome to StockQuotes!</h1>
+    </div>
+    <div>
+      <div class="tickerbox">
+        <label for='tickerbox'>Enter Stock Ticker:</label>
       </div>
       <div class="tickerbox">
-        <div>
-          <label for='tickerbox'>Enter Stock Ticker:</label>
-        </div>
-        <div>
-          <input type=text name='tickerbox' [(ngModel)]='ticker'>
-        </div>
-        <div class="error">
-          {{errorMessage}}
-        </div>
+        <input type=text name='tickerbox' [(ngModel)]='ticker'>
+      </div>
+      <div class="error">
+        {{errorMessage}}
+      </div>
+    </div>
+    <div>
+      <div>
+        <button class="btn btn-primary" type='submit' (click)='getQuote(ticker)'>Get Quote</button>
       </div>
       <div>
-        <div>
-          <button class="btn btn-primary" type='submit' (click)='getQuote(ticker)'>Get Quote</button>
-        </div>
-        <div>
-          <button class="btn btn-primary" *ngIf="token" type='submit' (click)='addFav()'>Add to Favorites</button>
-        </div>
+        <button class="btn btn-primary" *ngIf="token" type='submit' (click)='addFav()'>Add to Favorites</button>
+      </div>
     </div>
   </div>
   <div class='clr-col-sm-3'>
     <app-quotetable [quoteData]='quoteData'></app-quotetable>
+  </div>
+  <div class='clr-col-sm-3'>
+    <app-favtable [favList]="favList" (tickerChanged)='getQuote($event)' (tickerDeleted)='createFavList()'></app-favtable>
   </div>
 </div>
 
