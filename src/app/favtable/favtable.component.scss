@@ -9,7 +9,7 @@ th {
 
 clr-icon {
   color:#0079b8;
-  font-size:0.67rem;
+  // font-size:0.67rem;
   height: 1.215rem;
   width: 1.215rem;
   margin :0 0.75rem;
@@ -30,7 +30,7 @@ clr-icon.view:hover {
 }
 
 .scroll {
-  max-height: 11 * 1.75rem;
+  max-height: 10 * 1.75rem;
   overflow: auto;
   border-bottom: 1px solid #ccc;
   border-radius: 0.125rem;

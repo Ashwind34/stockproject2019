@@ -1,14 +1,21 @@
-.table td {
-  vertical-align: baseline;
-  font-size: 0.625rem;
-  line-height: 1rem;
-}
-
 tr {
   height: 1.75rem;
 }
 
 th {
   font-size: 0.71rem;
+  line-height: 1rem;
+}
+
+.scroll {
+  max-height: 11 * 1.75rem;
+  overflow: auto;
+  border-radius: 0.125rem;
+}
+
+.table td {
+  vertical-align: middle;
+  padding: 0.35rem;
+  font-size: 0.625rem;
   line-height: 1rem;
 }
