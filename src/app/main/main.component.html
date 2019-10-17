@@ -8,10 +8,12 @@
         <label for='tickerbox'>Enter Stock Ticker:</label>
       </div>
       <div class="tickerbox">
-        <input type=text name='tickerbox' [(ngModel)]='ticker'>
+        <input type=text name='tickerbox' [(ngModel)]='ticker' (focus)="clearMessages()">
       </div>
-      <div class="error">
-        {{errorMessage}}
+      <div class="message">
+        <div [ngStyle]="{ 'color': saveMessage ? 'green' : 'red' }">
+          {{errorMessage || saveMessage}}
+        </div>
       </div>
     </div>
     <div>

@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
   favListTickers: string[];
   favListIds: string[];
   errorMessage: string;
+  saveMessage: string;
   ticker: string = '';
   apiCallsErrorMessage: string = 'if you would like to target a higher API call frequency';
 
@@ -33,6 +34,7 @@ export class MainComponent implements OnInit {
 
   // method to establish current user favorites list
   createFavList() {
+    this.clearMessages();
     if (this.token) {
       this.favServ.getFavData(this.userId, this.token)
       .subscribe((response: any) => {
@@ -51,7 +53,7 @@ export class MainComponent implements OnInit {
   // in existing list and checks to make sure ticker is available from api
 
   addFav() {
-    this.errorMessage = null;
+    this.clearMessages();
     const newFav = {
       ticker: this.ticker.toUpperCase(),
       userId: this.userId
@@ -72,6 +74,7 @@ export class MainComponent implements OnInit {
         })).subscribe(() => {
           this.createFavList();
           this.ticker = null;
+          this.saveMessage = "Stock saved to favorites!";
         });
     } else {
       this.errorMessage = "That stock is already in your favorites list!";
@@ -82,7 +85,7 @@ export class MainComponent implements OnInit {
   // on bad requests, returns 200 with object that has error message properties
 
   getQuote(tickerData) {
-    this.errorMessage = null;
+    this.clearMessages();
     let ticker = this.ticker;
     if (tickerData.id) {
       ticker = tickerData.ticker;
@@ -101,6 +104,11 @@ export class MainComponent implements OnInit {
         }
       }
     )
+  }
+
+  clearMessages() {
+    this.errorMessage = null;
+    this.saveMessage = null;
   }
 }
 

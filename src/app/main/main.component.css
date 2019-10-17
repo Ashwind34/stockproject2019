@@ -32,8 +32,7 @@ label {
   margin: 0.5rem;;
 }
 
-.error {
-  color: red;
+.message {
   font-weight: bold;
   margin: 0px;
   height: 1rem;
