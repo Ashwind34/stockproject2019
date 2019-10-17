@@ -1,16 +1,41 @@
-.userInput {
-  display: flex;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 0.125rem;
-  margin-top: 1rem;
-  align-items: center;
-}
-
 h1 {
   margin: 0;
 }
 
+input[type=text] {
+  width: 8rem;
+  height: 1.5rem;
+  padding: 0 ;
+  border: 1.5px solid #0079b8;
+  border-radius: 0.125rem;
+}
+
+label {
+  font-size: 28px;
+}
+
+.tickerbox {
+  line-height: 2rem;
+}
+
+.userInput {
+  display: grid;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 0.125rem;
+  margin-top: 1rem;
+  align-content: space-evenly;
+  justify-content: center;
+}
+
 .btn {
   width: 8rem;
+  margin: 0.5rem;;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  margin: 0px;
+  height: 1rem;
 }
