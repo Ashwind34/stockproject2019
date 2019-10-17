@@ -10,14 +10,23 @@ th {
 clr-icon {
   color:#0079b8;
   font-size:0.67rem;
-  height: 24px;
-  width: 24px;
+  height: 1.215rem;
+  width: 1.215rem;
+  margin :0 0.75rem;
+  padding: 0.125rem;
+  border-radius: 0.175rem;
 }
 
-clr-icon:hover {
+clr-icon.delete:hover {
   color:white;
   background-color: red;
   border: 1.25px solid #0079b8;
+}
+
+clr-icon.view:hover {
+  color:white;
+  background-color: #0079b8;
+  border: 1.25px solid #565656;
 }
 
 .scroll {
@@ -26,10 +35,15 @@ clr-icon:hover {
 }
 
 .table td {
-  vertical-align: baseline;
+  vertical-align: middle;
   padding: 0.35rem;
   font-size: 0.625rem;
   line-height: 1rem;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end;
 }
 
 
