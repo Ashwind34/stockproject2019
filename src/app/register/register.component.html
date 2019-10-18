@@ -19,8 +19,8 @@
       <clr-password-container>
           <input type="password" name="password" clrPassword placeholder="Password" [(ngModel)]="userData.password"/>
       </clr-password-container>
-      <div *ngIf="errorMessage" class="error active">
-          Error with Registration.  Please Try Again
+      <div *ngIf="errorDisplay" class="error active">
+          {{errorDisplay}}
       </div>
       <button type="submit" class="btn btn-primary" (click)='registerUser()'>Register</button>
       <div class="guest">

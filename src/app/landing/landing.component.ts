@@ -25,6 +25,7 @@ export class LandingComponent implements OnInit {
   errorMessage;
 
   loginUser() {
+    this.errorMessage = null;
     this.userApi.userLogin(this.loginData)
     .subscribe(
       (response: any) => {
