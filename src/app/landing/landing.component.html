@@ -2,7 +2,7 @@
     <form class="login">
         <section class="title">
             <h3 class="welcome">Welcome to</h3>
-            Andy's Stock Data Tool
+            StockQuotes
             <h5 class="hint">Please Log In!</h5>
         </section>
         <div class="login-group">
@@ -18,9 +18,9 @@
             <button type="submit" class="btn btn-primary" (click)='loginUser()'>Login</button>
             <button type="submit" class="btn btn-primary" (click)='toRegister()'>New User? Click Here to Register for Free!</button>
             <div class='guest'>
-                <br> 
-                <a *ngIf="token == undefined" routerLink='../main'>Continue as Guest</a>  
-            </div>    
+                <br>
+                <a *ngIf="token == undefined" routerLink='../main'>Continue as Guest</a>
+            </div>
         </div>
     </form>
 </div>
