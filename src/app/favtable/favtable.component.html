@@ -5,16 +5,21 @@
         <th>Favorites</th>
       </tr>
     </table>
-    <table class="table" style="margin-top: 0px; border-top: 0px">
-      <tbody>
-        <tr *ngFor="let item of favList, let i = index;">
-            <td  (click)="changeTicker(i)">{{item.ticker}}</td>
-            <td *ngIf="item.id">
-              <button (click)="deleteTicker(i)">Delete</button>
-            </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="scroll">
+      <table class="table" style="margin-top: 0px; border-top: 0px">
+        <tbody>
+          <tr *ngFor="let item of favList, let i = index;">
+              <td>{{item.ticker}}</td>
+              <td *ngIf="item.id" class="icons">
+                <clr-icon class="view" shape="eye" title="Get Quote" (click)="changeTicker(i)"></clr-icon>
+                <clr-icon class="delete" shape="trash" title="Delete" (click)="deleteTicker(i)"></clr-icon>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 
 

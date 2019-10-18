@@ -20,19 +20,15 @@ export class LandingComponent implements OnInit {
     password : ''
   };
 
-  user;
-
   token;
 
   errorMessage;
 
   loginUser() {
-    this.user = '';
-    this.errorMessage = '';
+    this.errorMessage = null;
     this.userApi.userLogin(this.loginData)
     .subscribe(
       (response: any) => {
-        this.user = response;
         sessionStorage.setItem('token', response.token);
         sessionStorage.setItem('userId', response.userId);
       }, error => {

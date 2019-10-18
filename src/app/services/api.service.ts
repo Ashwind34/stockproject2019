@@ -9,13 +9,13 @@ export class ApiService {
 
   key: string = 'E6BYVBYEDEBLOQJI';
 
-  quoteUrl: string = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&'
+  quoteUrl: string = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&';
 
   quoteCall(ticker) {
     return this.http.get(
       this.quoteUrl +
       'symbol=' + ticker +
       '&apikey=' + this.key
-    )
+    );
   }
 }

@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FavService {
 
-  favUrl: string = 'http://localhost:3000/api/appUsers'
+  favUrl: string = 'http://localhost:3000/api/appUsers';
 
-  favQuery: string = 'userFavs?access_token='
+  favQuery: string = 'userFavs?access_token=';
 
-  favoritesUrl: string = 'http://localhost:3000/api/favorites'
+  favoritesUrl: string = 'http://localhost:3000/api/favorites';
 
   constructor(public http: HttpClient) { }
 
@@ -24,6 +24,6 @@ export class FavService {
   }
 
   deleteFav(id) {
-    return this.http.delete(`${this.favoritesUrl}/${id}`)
+    return this.http.delete(`${this.favoritesUrl}/${id}`);
   }
 }

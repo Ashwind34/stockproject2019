@@ -23,9 +23,12 @@ export class RegisterComponent implements OnInit {
 
   errorMessage;
 
+  errorDisplay;
+
   registerUser() {
-    this.user = '';
-    this.errorMessage = '';
+    this.user = null;
+    this.errorMessage = null;
+    this.errorDisplay = null;
     this.userApi.userRegister(this.userData)
     .subscribe(
       (response: any) => {
@@ -33,7 +36,14 @@ export class RegisterComponent implements OnInit {
         sessionStorage.setItem('token', response.token);
         sessionStorage.setItem('userId', response.userId);
       }, error => {
-        this.errorMessage = error.status;
+        this.errorMessage = error.error.error.message;
+        if(this.errorMessage.includes('`email` is invalid')) {
+          this.errorDisplay = "Invalid email address.  Please try again.";
+        } else if (this.errorMessage.includes('Email already exists')) {
+          this.errorDisplay = "Email already in use.  Please try again."
+        } else {
+          this.errorDisplay = "Error with Registration.  Please try again."
+        }
       }, () => {
           if (!this.errorMessage) {
             this.router.navigate(['/main']);

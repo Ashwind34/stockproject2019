@@ -10,8 +10,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   logout() {
     const token = sessionStorage.getItem('token');
@@ -21,5 +20,4 @@ export class NavbarComponent implements OnInit {
       sessionStorage.removeItem('token');
     });
   }
-
 }

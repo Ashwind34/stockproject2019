@@ -14,7 +14,18 @@ export class QuotetableComponent implements OnInit, OnChanges {
 
   @Input() quoteData: any;
 
-  headers = ['Symbol:', 'Price:',  'Open:',  'High:',  'Low:', 'Volume:', 'Date:', 'Prev. Close:', 'Change ($):', 'Change (%):'];
+  headers = [
+    'Symbol:',
+    'Price:',
+    'Open:',
+    'High:',
+    'Low:',
+    'Volume:',
+    'Date:',
+    'Prev. Close:',
+    'Change ($):',
+    'Change (%):'
+  ];
 
   fullData = [];
 
@@ -30,7 +41,7 @@ export class QuotetableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.createTableData()
+    this.createTableData();
   }
 
   ngOnInit() {

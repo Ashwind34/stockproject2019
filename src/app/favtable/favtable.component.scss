@@ -1,0 +1,51 @@
+tr {
+  height: 1.75rem;
+}
+
+th {
+  font-size: 0.71rem;
+  line-height: 1rem;
+}
+
+clr-icon {
+  color:#0079b8;
+  // font-size:0.67rem;
+  height: 1.215rem;
+  width: 1.215rem;
+  margin :0 0.75rem;
+  padding: 0.125rem;
+  border-radius: 0.175rem;
+}
+
+clr-icon.delete:hover {
+  color:white;
+  background-color: red;
+  border: 1.25px solid #0079b8;
+}
+
+clr-icon.view:hover {
+  color:white;
+  background-color: #0079b8;
+  border: 1.25px solid #565656;
+}
+
+.scroll {
+  max-height: 10 * 1.75rem;
+  overflow: auto;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0.125rem;
+}
+
+.table td {
+  vertical-align: middle;
+  padding: 0.35rem;
+  font-size: 0.625rem;
+  line-height: 1rem;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+

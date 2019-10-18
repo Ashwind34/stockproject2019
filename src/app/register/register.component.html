@@ -1,32 +1,32 @@
 <div class="login-wrapper">
   <form class="login">
-      <section class="title">
-          <h3 class="welcome">Welcome to</h3>
-          Andy's Stock Data Tool
-          <h5 class="hint">Please complete the following form to register!</h5>
-          <h5 class="hint"><i>(All fields required)</i></h5>
-      </section>
-      <div class="login-group">
-          <clr-input-container>
-              <input type="text" name="firstName" clrInput placeholder="First Name" [(ngModel)]="userData.firstName"/>
-          </clr-input-container>
-          <clr-input-container>
-              <input type="text" name="username" clrInput placeholder="Last Name" [(ngModel)]="userData.lastName"/>
-          </clr-input-container>
-          <clr-input-container>
-              <input type="text" name="username" clrInput placeholder="Email" [(ngModel)]="userData.email"/>
-          </clr-input-container>
-          <clr-password-container>
-              <input type="password" name="password" clrPassword placeholder="Password" [(ngModel)]="userData.password"/>
-          </clr-password-container>
-          <div *ngIf="errorMessage" class="error active">
-              Error with Registration.  Please Try Again
-          </div>         
-          <button type="submit" class="btn btn-primary" (click)='registerUser()'>Register</button>
-          <div class="guest">
-            <br>
-            <a routerLink='../main'>Continue as Guest</a>
-          </div>
+    <section class="title">
+      <h3 class="welcome">Welcome to</h3>
+      Andy's Stock Data Tool
+      <h5 class="hint">Please complete the following form to register!</h5>
+      <h5 class="hint"><i>(All fields required)</i></h5>
+    </section>
+    <div class="login-group">
+      <clr-input-container>
+          <input type="text" name="firstName" clrInput placeholder="First Name" [(ngModel)]="userData.firstName"/>
+      </clr-input-container>
+      <clr-input-container>
+          <input type="text" name="username" clrInput placeholder="Last Name" [(ngModel)]="userData.lastName"/>
+      </clr-input-container>
+      <clr-input-container>
+          <input type="text" name="username" clrInput placeholder="Email" [(ngModel)]="userData.email"/>
+      </clr-input-container>
+      <clr-password-container>
+          <input type="password" name="password" clrPassword placeholder="Password" [(ngModel)]="userData.password"/>
+      </clr-password-container>
+      <div *ngIf="errorDisplay" class="error active">
+          {{errorDisplay}}
       </div>
+      <button type="submit" class="btn btn-primary" (click)='registerUser()'>Register</button>
+      <div class="guest">
+        <br>
+        <a routerLink='../main'>Continue as Guest</a>
+      </div>
+    </div>
   </form>
 </div>
