@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FavService {
 
-  favUrl: string = 'https://ashstockquotes.herokuapp.com/api/appUsers';
+  favUrl: string = 'https://stockquotesapi.herokuapp.com/api/appUsers';
 
   favQuery: string = 'userFavs?access_token=';
 
-  favoritesUrl: string = 'https://ashstockquotes.herokuapp.com/api/favorites';
+  favoritesUrl: string = 'https://stockquotesapi.herokuapp.com/api/favorites';
 
   constructor(public http: HttpClient) { }
 
