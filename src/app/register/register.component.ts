@@ -21,6 +21,8 @@ export class RegisterComponent implements OnInit {
 
   user;
 
+  token;
+
   errorMessage;
 
   errorDisplay;
@@ -53,6 +55,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.token = sessionStorage.getItem('token')
   }
 
 }

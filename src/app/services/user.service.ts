@@ -8,7 +8,7 @@ export class UserService {
 
   constructor(public http: HttpClient) { }
 
-  userUrl: string = 'http://localhost:3000/api/appUsers';
+  userUrl: string = 'https://stockquotesapi.herokuapp.com/api/appUsers';
 
   // api calls to interact with backend
 
