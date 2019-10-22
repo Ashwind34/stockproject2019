@@ -25,7 +25,7 @@
       <button type="submit" class="btn btn-primary" (click)='registerUser()'>Register</button>
       <div class="guest">
         <br>
-        <a routerLink='../main'>Continue as Guest</a>
+        <a  *ngIf="token == undefined" routerLink='../main'>Continue as Guest</a>
       </div>
     </div>
   </form>
